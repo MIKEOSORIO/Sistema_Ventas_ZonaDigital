@@ -16,9 +16,11 @@ namespace CapaDatos
         private string _Nombre;
         private string _Descripcion;
         private byte[] _Imagen;
+        private string _Garantia_Proveedor;
+        private string _Garantia_Tienda;
         private int _Idcategoria;
         private int _Idpresentacion;
-        private string _TextoBuscar;       
+        private string _TextoBuscar;
 
         public int Idarticulo
         {
@@ -45,6 +47,17 @@ namespace CapaDatos
             get { return _Imagen; }
             set { _Imagen = value; }
         }
+
+        public string Garantia_Proveedor
+        {
+            get { return _Garantia_Proveedor; }
+            set { _Garantia_Proveedor = value; }
+        }
+        public string Garantia_Tienda
+        {
+            get { return _Garantia_Tienda; }
+            set { _Garantia_Tienda = value; }
+        }
         public int Idcategoria
         {
             get { return _Idcategoria; }
@@ -67,13 +80,15 @@ namespace CapaDatos
 
         }
 
-        public DArticulo(int idarticulo,string codigo,string nombre,string descripcion,byte[] imagen,int idcategoria,int idpresentacion,string textobuscar)
+        public DArticulo(int idarticulo, string codigo, string nombre, string descripcion, byte[] imagen, string garantia_proveedor,string garantia_tienda, int idcategoria, int idpresentacion, string textobuscar)
         {
             this.Idarticulo = idarticulo;
             this.Codigo = codigo;
             this.Nombre = nombre;
             this.Descripcion = descripcion;
             this.Imagen = imagen;
+            this.Garantia_Proveedor = garantia_proveedor;
+            this.Garantia_Tienda = garantia_tienda;
             this.Idcategoria = idcategoria;
             this.Idpresentacion = idpresentacion;
             this.TextoBuscar = textobuscar;
@@ -129,6 +144,20 @@ namespace CapaDatos
                 ParImagen.SqlDbType = SqlDbType.Image;
                 ParImagen.Value = Articulo.Imagen;
                 SqlCmd.Parameters.Add(ParImagen);
+
+                SqlParameter ParGarantia_Proveedor = new SqlParameter();
+                ParGarantia_Proveedor.ParameterName = "@garantia_proveedor";
+                ParGarantia_Proveedor.SqlDbType = SqlDbType.VarChar;
+                ParGarantia_Proveedor.Size = 50;
+                ParGarantia_Proveedor.Value = Articulo.Garantia_Proveedor;
+                SqlCmd.Parameters.Add(ParGarantia_Proveedor);
+
+                SqlParameter ParGarantia_Tienda = new SqlParameter();
+                ParGarantia_Tienda.ParameterName = "@garantia_tienda";
+                ParGarantia_Tienda.SqlDbType = SqlDbType.VarChar;
+                ParGarantia_Tienda.Size = 50;
+                ParGarantia_Tienda.Value = Articulo.Garantia_Tienda;
+                SqlCmd.Parameters.Add(ParGarantia_Tienda);
 
                 SqlParameter ParIdcategoria = new SqlParameter();
                 ParIdcategoria.ParameterName = "@idcategoria";
@@ -208,6 +237,20 @@ namespace CapaDatos
                 ParImagen.SqlDbType = SqlDbType.Image;
                 ParImagen.Value = Articulo.Imagen;
                 SqlCmd.Parameters.Add(ParImagen);
+
+                SqlParameter ParGarantia_Proveedor = new SqlParameter();
+                ParGarantia_Proveedor.ParameterName = "@garantia_proveedor";
+                ParGarantia_Proveedor.SqlDbType = SqlDbType.VarChar;
+                ParGarantia_Proveedor.Size = 50;
+                ParGarantia_Proveedor.Value = Articulo.Garantia_Proveedor;
+                SqlCmd.Parameters.Add(ParGarantia_Proveedor);
+
+                SqlParameter ParGarantia_Tienda = new SqlParameter();
+                ParGarantia_Tienda.ParameterName = "@garantia_tienda";
+                ParGarantia_Tienda.SqlDbType = SqlDbType.VarChar;
+                ParGarantia_Tienda.Size = 50;
+                ParGarantia_Tienda.Value = Articulo.Garantia_Tienda;
+                SqlCmd.Parameters.Add(ParGarantia_Tienda);
 
                 SqlParameter ParIdcategoria = new SqlParameter();
                 ParIdcategoria.ParameterName = "@idcategoria";
@@ -335,6 +378,36 @@ namespace CapaDatos
             }
             return DtResultado;
 
+        }
+
+        public DataTable BuscarCodigo(DArticulo Articulo)
+        {
+            DataTable DtResultado = new DataTable("articulo");
+            SqlConnection SqlCon = new SqlConnection();
+            try
+            {
+                SqlCon.ConnectionString = Conexion.Cn;
+                SqlCommand SqlCmd = new SqlCommand();
+                SqlCmd.Connection = SqlCon;
+                SqlCmd.CommandText = "spbuscar_articulo_codigo";
+                SqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParTextoBuscar = new SqlParameter();
+                ParTextoBuscar.ParameterName = "@textobuscar";
+                ParTextoBuscar.SqlDbType = SqlDbType.VarChar;
+                ParTextoBuscar.Size = 50;
+                ParTextoBuscar.Value = Articulo.TextoBuscar;
+                SqlCmd.Parameters.Add(ParTextoBuscar);
+
+                SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);
+                SqlDat.Fill(DtResultado);
+
+            }
+            catch (Exception ex)
+            {
+                DtResultado = null;
+            }
+            return DtResultado;
         }
 
 

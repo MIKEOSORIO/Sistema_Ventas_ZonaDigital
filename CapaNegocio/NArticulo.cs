@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using CapaDatos;
+
 using System.Data;
 
 namespace CapaNegocio
@@ -13,13 +14,15 @@ namespace CapaNegocio
     {
         //Método Insertar que llama al método Insertar de la clase DArticulo
         //de la CapaDatos
-        public static string Insertar(string codigo,string nombre, string descripcion,byte[] imagen,int idcategoria, int idpresentacion)
+        public static string Insertar(string codigo, string nombre, string descripcion, byte[] imagen, string garantia_proveedor, string garantia_tienda , int idcategoria, int idpresentacion)
         {
             DArticulo Obj = new DArticulo();
             Obj.Codigo = codigo;
             Obj.Nombre = nombre;
             Obj.Descripcion = descripcion;
             Obj.Imagen = imagen;
+            Obj.Garantia_Proveedor = garantia_proveedor;
+            Obj.Garantia_Tienda = garantia_tienda;
             Obj.Idcategoria = idcategoria;
             Obj.Idpresentacion = idpresentacion;
 
@@ -28,7 +31,7 @@ namespace CapaNegocio
 
         //Método Editar que llama al método Editar de la clase DArticulo
         //de la CapaDatos
-        public static string Editar(int idarticulo,string codigo, string nombre, string descripcion, byte[] imagen, int idcategoria, int idpresentacion)
+        public static string Editar(int idarticulo, string codigo, string nombre, string descripcion, byte[] imagen, string garantia_proveedor, string garantia_tienda, int idcategoria, int idpresentacion)
         {
             DArticulo Obj = new DArticulo();
             Obj.Idarticulo = idarticulo;
@@ -36,6 +39,8 @@ namespace CapaNegocio
             Obj.Nombre = nombre;
             Obj.Descripcion = descripcion;
             Obj.Imagen = imagen;
+            Obj.Garantia_Proveedor = garantia_proveedor;
+            Obj.Garantia_Tienda = garantia_tienda;
             Obj.Idcategoria = idcategoria;
             Obj.Idpresentacion = idpresentacion;
             return Obj.Editar(Obj);
@@ -59,12 +64,29 @@ namespace CapaNegocio
 
         //Método BuscarNombre que llama al método BuscarNombre
         //de la clase DArticulo de la CapaDatos
+        public static DataTable Mostrar_Inventario()
+        {
+            return new DInventario().Mostrar_Inventario();
+                  
+        }
 
         public static DataTable BuscarNombre(string textobuscar)
         {
             DArticulo Obj = new DArticulo();
             Obj.TextoBuscar = textobuscar;
             return Obj.BuscarNombre(Obj);
+        }
+
+        public static DataTable BuscarCodigo(string textobuscar)
+        {
+            DArticulo Obj = new DArticulo();
+            Obj.TextoBuscar = textobuscar;
+            return Obj.BuscarCodigo(Obj);
+        }
+
+        public static DataTable Stock_Articulos()
+        {
+            return new DArticulo().Stock_Articulos();
         }
     }
 }

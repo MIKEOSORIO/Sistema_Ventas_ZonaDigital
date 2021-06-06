@@ -65,6 +65,7 @@ namespace CapaPresentacion
             this.txtEmail.Text = string.Empty;
             this.txtUsuario.Text = string.Empty;
             this.txtPassword.Text = string.Empty;
+            this.txtNum_Agente.Text = string.Empty;
 
         }
         //Habilita los controles de los formularios
@@ -82,6 +83,7 @@ namespace CapaPresentacion
             this.cbAcceso.Enabled = Valor;
             this.txtUsuario.ReadOnly = !Valor;
             this.txtPassword.ReadOnly = !Valor;
+            this.txtNum_Agente.Enabled = Valor;
         }
         //Habilita los botones
         private void Botones()
@@ -226,7 +228,7 @@ namespace CapaPresentacion
                         this.txtApellidos.Text.Trim().ToUpper(), cbSexo.Text,
                         dtFecha_Nacimiento.Value,
                         txtNum_Documento.Text, txtDireccion.Text,
-                        txtTelefono.Text, txtEmail.Text, cbAcceso.Text, txtUsuario.Text, txtPassword.Text);
+                        txtTelefono.Text, txtNum_Agente.Text ,txtEmail.Text, cbAcceso.Text, txtUsuario.Text, txtPassword.Text);
 
                     }
                     else
@@ -236,7 +238,7 @@ namespace CapaPresentacion
                         this.txtApellidos.Text.Trim().ToUpper(), cbSexo.Text,
                         dtFecha_Nacimiento.Value,
                         txtNum_Documento.Text, txtDireccion.Text,
-                        txtTelefono.Text, txtEmail.Text, cbAcceso.Text, txtUsuario.Text, txtPassword.Text);
+                        txtTelefono.Text, txtEmail.Text, txtNum_Agente.Text, cbAcceso.Text, txtUsuario.Text, txtPassword.Text);
                     }
                     //Si la respuesta fue OK, fue porque se modifico 
                     //o inserto el Cliente
@@ -319,6 +321,7 @@ namespace CapaPresentacion
             this.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["direccion"].Value);
             this.txtTelefono.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["telefono"].Value);
             this.txtEmail.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["email"].Value);
+            this.txtNum_Agente.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["num_agente"].Value);
             this.cbAcceso.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["acceso"].Value);
             this.txtUsuario.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["usuario"].Value);
             this.txtPassword.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["password"].Value);
@@ -343,6 +346,26 @@ namespace CapaPresentacion
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataListado_DoubleClick(object sender, EventArgs e)
+        {
+            this.txtIdtrabajador.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["idtrabajador"].Value);
+            this.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Nombre"].Value);
+            this.txtApellidos.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["apellidos"].Value);
+            this.cbSexo.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["sexo"].Value);
+            this.dtFecha_Nacimiento.Value = Convert.ToDateTime(this.dataListado.CurrentRow.Cells["fecha_nac"].Value);
+            this.txtNum_Documento.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["num_documento"].Value);
+            this.txtDireccion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["direccion"].Value);
+            this.txtTelefono.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["telefono"].Value);
+            this.txtEmail.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["email"].Value);
+            this.txtNum_Agente.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["num_agente"].Value);
+            this.cbAcceso.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["acceso"].Value);
+            this.txtUsuario.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["usuario"].Value);
+            this.txtPassword.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["password"].Value);
+
+
+            this.tabControl1.SelectedIndex = 1;
         }
     }
 }

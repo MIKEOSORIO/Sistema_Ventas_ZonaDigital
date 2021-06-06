@@ -52,6 +52,8 @@ namespace CapaPresentacion
             this.lblTotalPagado = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtUPC = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.txtPrecio_Venta = new System.Windows.Forms.TextBox();
@@ -64,7 +66,7 @@ namespace CapaPresentacion
             this.txtArticulo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtIdarticulo = new System.Windows.Forms.TextBox();
-            this.txtIgv = new System.Windows.Forms.TextBox();
+            this.txtIva = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtCorrelativo = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -84,8 +86,13 @@ namespace CapaPresentacion
             this.dataListado = new System.Windows.Forms.DataGridView();
             this.Eliminar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtnombreProveedor = new System.Windows.Forms.TextBox();
+            this.lblProveedor = new System.Windows.Forms.Label();
+            this.cbOpcion = new System.Windows.Forms.ComboBox();
+            this.lblTotal_Comprado = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.dtFecha2 = new System.Windows.Forms.DateTimePicker();
+            this.label21 = new System.Windows.Forms.Label();
             this.dtFecha1 = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -155,9 +162,9 @@ namespace CapaPresentacion
             this.label1.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(297, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(236, 36);
+            this.label1.Size = new System.Drawing.Size(225, 36);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Ingresos Almacén";
+            this.label1.Text = "Ingreso Almacén";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // ttMensaje
@@ -186,7 +193,7 @@ namespace CapaPresentacion
             this.errorIcono.SetIconAlignment(this.btnImprimir, System.Windows.Forms.ErrorIconAlignment.BottomLeft);
             this.btnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Image")));
             this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImprimir.Location = new System.Drawing.Point(749, 64);
+            this.btnImprimir.Location = new System.Drawing.Point(747, 84);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(115, 43);
             this.btnImprimir.TabIndex = 4;
@@ -199,7 +206,7 @@ namespace CapaPresentacion
             this.errorIcono.SetIconAlignment(this.btnEliminar, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(623, 64);
+            this.btnEliminar.Location = new System.Drawing.Point(624, 84);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(112, 43);
             this.btnEliminar.TabIndex = 3;
@@ -213,7 +220,7 @@ namespace CapaPresentacion
             this.errorIcono.SetIconAlignment(this.btnBuscar, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(490, 64);
+            this.btnBuscar.Location = new System.Drawing.Point(497, 84);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(117, 43);
             this.btnBuscar.TabIndex = 2;
@@ -223,6 +230,7 @@ namespace CapaPresentacion
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtIdingreso);
             this.groupBox1.Controls.Add(this.dtFecha_Vencimiento);
             this.groupBox1.Controls.Add(this.dtFecha_Produccion);
             this.groupBox1.Controls.Add(this.txtIdproveedor);
@@ -230,7 +238,7 @@ namespace CapaPresentacion
             this.groupBox1.Controls.Add(this.lblTotalPagado);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.txtIgv);
+            this.groupBox1.Controls.Add(this.txtIva);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.txtCorrelativo);
             this.groupBox1.Controls.Add(this.label9);
@@ -248,9 +256,10 @@ namespace CapaPresentacion
             this.groupBox1.Controls.Add(this.btnNuevo);
             this.groupBox1.Location = new System.Drawing.Point(19, 18);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(834, 513);
+            this.groupBox1.Size = new System.Drawing.Size(834, 475);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Ingreso Almacén";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // dtFecha_Vencimiento
@@ -282,10 +291,13 @@ namespace CapaPresentacion
             this.dataListadoDetalle.AllowUserToAddRows = false;
             this.dataListadoDetalle.AllowUserToDeleteRows = false;
             this.dataListadoDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataListadoDetalle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dataListadoDetalle.Enabled = false;
             this.dataListadoDetalle.Location = new System.Drawing.Point(26, 283);
             this.dataListadoDetalle.Name = "dataListadoDetalle";
             this.dataListadoDetalle.Size = new System.Drawing.Size(791, 137);
             this.dataListadoDetalle.TabIndex = 46;
+            this.dataListadoDetalle.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListadoDetalle_CellContentClick);
             // 
             // lblTotalPagado
             // 
@@ -307,6 +319,8 @@ namespace CapaPresentacion
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtUPC);
+            this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.btnQuitar);
             this.groupBox2.Controls.Add(this.btnAgregar);
             this.groupBox2.Controls.Add(this.txtPrecio_Venta);
@@ -324,6 +338,23 @@ namespace CapaPresentacion
             this.groupBox2.Size = new System.Drawing.Size(791, 127);
             this.groupBox2.TabIndex = 33;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // txtUPC
+            // 
+            this.txtUPC.Location = new System.Drawing.Point(106, 20);
+            this.txtUPC.Name = "txtUPC";
+            this.txtUPC.Size = new System.Drawing.Size(116, 23);
+            this.txtUPC.TabIndex = 47;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 16);
+            this.label3.TabIndex = 46;
+            this.label3.Text = "UPC Artículo:";
             // 
             // btnQuitar
             // 
@@ -331,7 +362,7 @@ namespace CapaPresentacion
             this.btnQuitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuitar.ForeColor = System.Drawing.Color.White;
             this.btnQuitar.Image = ((System.Drawing.Image)(resources.GetObject("btnQuitar.Image")));
-            this.btnQuitar.Location = new System.Drawing.Point(686, 82);
+            this.btnQuitar.Location = new System.Drawing.Point(686, 76);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(41, 36);
             this.btnQuitar.TabIndex = 45;
@@ -344,7 +375,7 @@ namespace CapaPresentacion
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.ForeColor = System.Drawing.Color.White;
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
-            this.btnAgregar.Location = new System.Drawing.Point(686, 40);
+            this.btnAgregar.Location = new System.Drawing.Point(686, 44);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(41, 36);
             this.btnAgregar.TabIndex = 44;
@@ -353,7 +384,7 @@ namespace CapaPresentacion
             // 
             // txtPrecio_Venta
             // 
-            this.txtPrecio_Venta.Location = new System.Drawing.Point(544, 89);
+            this.txtPrecio_Venta.Location = new System.Drawing.Point(544, 82);
             this.txtPrecio_Venta.Name = "txtPrecio_Venta";
             this.txtPrecio_Venta.Size = new System.Drawing.Size(110, 23);
             this.txtPrecio_Venta.TabIndex = 43;
@@ -361,7 +392,7 @@ namespace CapaPresentacion
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(443, 92);
+            this.label14.Location = new System.Drawing.Point(443, 85);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(95, 16);
             this.label14.TabIndex = 42;
@@ -369,7 +400,7 @@ namespace CapaPresentacion
             // 
             // txtPrecio_Compra
             // 
-            this.txtPrecio_Compra.Location = new System.Drawing.Point(544, 45);
+            this.txtPrecio_Compra.Location = new System.Drawing.Point(544, 52);
             this.txtPrecio_Compra.Name = "txtPrecio_Compra";
             this.txtPrecio_Compra.Size = new System.Drawing.Size(110, 23);
             this.txtPrecio_Compra.TabIndex = 41;
@@ -377,7 +408,7 @@ namespace CapaPresentacion
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(428, 48);
+            this.label13.Location = new System.Drawing.Point(428, 55);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(110, 16);
             this.label13.TabIndex = 40;
@@ -389,6 +420,7 @@ namespace CapaPresentacion
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(244, 23);
             this.txtStock.TabIndex = 39;
+            this.txtStock.TextChanged += new System.EventHandler(this.txtStock_TextChanged);
             // 
             // label5
             // 
@@ -429,18 +461,18 @@ namespace CapaPresentacion
             // 
             // txtIdarticulo
             // 
-            this.txtIdarticulo.Location = new System.Drawing.Point(106, 20);
+            this.txtIdarticulo.Location = new System.Drawing.Point(588, 16);
             this.txtIdarticulo.Name = "txtIdarticulo";
             this.txtIdarticulo.Size = new System.Drawing.Size(45, 23);
             this.txtIdarticulo.TabIndex = 35;
             // 
-            // txtIgv
+            // txtIva
             // 
-            this.txtIgv.Location = new System.Drawing.Point(538, 77);
-            this.txtIgv.Name = "txtIgv";
-            this.txtIgv.Size = new System.Drawing.Size(106, 23);
-            this.txtIgv.TabIndex = 32;
-            this.txtIgv.TextChanged += new System.EventHandler(this.txtIgv_TextChanged);
+            this.txtIva.Location = new System.Drawing.Point(538, 77);
+            this.txtIva.Name = "txtIva";
+            this.txtIva.Size = new System.Drawing.Size(106, 23);
+            this.txtIva.TabIndex = 32;
+            this.txtIva.TextChanged += new System.EventHandler(this.txtIgv_TextChanged);
             // 
             // label12
             // 
@@ -521,7 +553,7 @@ namespace CapaPresentacion
             this.btnCancelar.ForeColor = System.Drawing.Color.White;
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(698, 455);
+            this.btnCancelar.Location = new System.Drawing.Point(681, 423);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(120, 45);
             this.btnCancelar.TabIndex = 9;
@@ -535,7 +567,7 @@ namespace CapaPresentacion
             this.btnGuardar.ForeColor = System.Drawing.Color.White;
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(539, 455);
+            this.btnGuardar.Location = new System.Drawing.Point(538, 423);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(121, 45);
             this.btnGuardar.TabIndex = 7;
@@ -549,7 +581,7 @@ namespace CapaPresentacion
             this.btnNuevo.ForeColor = System.Drawing.Color.White;
             this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNuevo.Location = new System.Drawing.Point(381, 455);
+            this.btnNuevo.Location = new System.Drawing.Point(383, 423);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(121, 45);
             this.btnNuevo.TabIndex = 6;
@@ -559,9 +591,9 @@ namespace CapaPresentacion
             // 
             // txtIdingreso
             // 
-            this.txtIdingreso.Location = new System.Drawing.Point(157, 6);
+            this.txtIdingreso.Location = new System.Drawing.Point(330, 19);
             this.txtIdingreso.Name = "txtIdingreso";
-            this.txtIdingreso.Size = new System.Drawing.Size(167, 23);
+            this.txtIdingreso.Size = new System.Drawing.Size(52, 23);
             this.txtIdingreso.TabIndex = 3;
             // 
             // lblTotal
@@ -578,7 +610,7 @@ namespace CapaPresentacion
             // 
             this.chkEliminar.AutoSize = true;
             this.chkEliminar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkEliminar.Location = new System.Drawing.Point(7, 139);
+            this.chkEliminar.Location = new System.Drawing.Point(7, 122);
             this.chkEliminar.Name = "chkEliminar";
             this.chkEliminar.Size = new System.Drawing.Size(73, 23);
             this.chkEliminar.TabIndex = 5;
@@ -590,7 +622,7 @@ namespace CapaPresentacion
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(56, 39);
+            this.label2.Location = new System.Drawing.Point(56, 55);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 15);
             this.label2.TabIndex = 0;
@@ -614,12 +646,12 @@ namespace CapaPresentacion
             this.dataListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Eliminar});
-            this.dataListado.Location = new System.Drawing.Point(7, 165);
+            this.dataListado.Location = new System.Drawing.Point(8, 144);
             this.dataListado.MultiSelect = false;
             this.dataListado.Name = "dataListado";
             this.dataListado.ReadOnly = true;
             this.dataListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataListado.Size = new System.Drawing.Size(857, 366);
+            this.dataListado.Size = new System.Drawing.Size(857, 312);
             this.dataListado.TabIndex = 7;
             this.dataListado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListado_CellContentClick);
             this.dataListado.DoubleClick += new System.EventHandler(this.dataListado_DoubleClick);
@@ -632,8 +664,13 @@ namespace CapaPresentacion
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.txtnombreProveedor);
+            this.tabPage1.Controls.Add(this.lblProveedor);
+            this.tabPage1.Controls.Add(this.cbOpcion);
+            this.tabPage1.Controls.Add(this.lblTotal_Comprado);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.dtFecha2);
+            this.tabPage1.Controls.Add(this.label21);
             this.tabPage1.Controls.Add(this.dtFecha1);
             this.tabPage1.Controls.Add(this.dataListado);
             this.tabPage1.Controls.Add(this.lblTotal);
@@ -646,16 +683,60 @@ namespace CapaPresentacion
             this.tabPage1.Location = new System.Drawing.Point(4, 30);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(871, 537);
+            this.tabPage1.Size = new System.Drawing.Size(871, 500);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Listado";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // txtnombreProveedor
+            // 
+            this.txtnombreProveedor.Font = new System.Drawing.Font("Montserrat", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtnombreProveedor.Location = new System.Drawing.Point(315, 16);
+            this.txtnombreProveedor.Name = "txtnombreProveedor";
+            this.txtnombreProveedor.Size = new System.Drawing.Size(169, 26);
+            this.txtnombreProveedor.TabIndex = 31;
+            this.txtnombreProveedor.TextChanged += new System.EventHandler(this.txtnombreProveedor_TextChanged);
+            // 
+            // lblProveedor
+            // 
+            this.lblProveedor.AutoSize = true;
+            this.lblProveedor.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProveedor.Location = new System.Drawing.Point(220, 20);
+            this.lblProveedor.Name = "lblProveedor";
+            this.lblProveedor.Size = new System.Drawing.Size(89, 21);
+            this.lblProveedor.TabIndex = 30;
+            this.lblProveedor.Text = "Proveedor:";
+            this.lblProveedor.Click += new System.EventHandler(this.lblProveedor_Click);
+            // 
+            // cbOpcion
+            // 
+            this.cbOpcion.FormattingEnabled = true;
+            this.cbOpcion.Items.AddRange(new object[] {
+            "Proveedor",
+            "Proveedor y Fecha",
+            "Fechas"});
+            this.cbOpcion.Location = new System.Drawing.Point(38, 18);
+            this.cbOpcion.Name = "cbOpcion";
+            this.cbOpcion.Size = new System.Drawing.Size(121, 24);
+            this.cbOpcion.TabIndex = 29;
+            this.cbOpcion.Text = "Fechas";
+            this.cbOpcion.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // lblTotal_Comprado
+            // 
+            this.lblTotal_Comprado.AutoSize = true;
+            this.lblTotal_Comprado.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal_Comprado.Location = new System.Drawing.Point(149, 467);
+            this.lblTotal_Comprado.Name = "lblTotal_Comprado";
+            this.lblTotal_Comprado.Size = new System.Drawing.Size(0, 21);
+            this.lblTotal_Comprado.TabIndex = 28;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(239, 39);
+            this.label10.Location = new System.Drawing.Point(242, 55);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(61, 15);
             this.label10.TabIndex = 10;
@@ -669,6 +750,16 @@ namespace CapaPresentacion
             this.dtFecha2.Size = new System.Drawing.Size(119, 23);
             this.dtFecha2.TabIndex = 9;
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(15, 467);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(134, 21);
+            this.label21.TabIndex = 27;
+            this.label21.Text = "Total Comprado:";
+            // 
             // dtFecha1
             // 
             this.dtFecha1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -680,15 +771,15 @@ namespace CapaPresentacion
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.groupBox1);
-            this.tabPage2.Controls.Add(this.txtIdingreso);
             this.tabPage2.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage2.Location = new System.Drawing.Point(4, 30);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(871, 537);
+            this.tabPage2.Size = new System.Drawing.Size(871, 500);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Mantenimiento";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // tabControl1
             // 
@@ -698,7 +789,7 @@ namespace CapaPresentacion
             this.tabControl1.Location = new System.Drawing.Point(34, 66);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(879, 571);
+            this.tabControl1.Size = new System.Drawing.Size(879, 534);
             this.tabControl1.TabIndex = 12;
             // 
             // frmIngreso
@@ -729,7 +820,6 @@ namespace CapaPresentacion
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -775,7 +865,7 @@ namespace CapaPresentacion
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtCorrelativo;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtIgv;
+        private System.Windows.Forms.TextBox txtIva;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnBuscarArticulo;
@@ -796,5 +886,12 @@ namespace CapaPresentacion
         private System.Windows.Forms.TextBox txtIdproveedor;
         private System.Windows.Forms.DateTimePicker dtFecha_Vencimiento;
         private System.Windows.Forms.DateTimePicker dtFecha_Produccion;
+        private System.Windows.Forms.Label lblTotal_Comprado;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtUPC;
+        private System.Windows.Forms.ComboBox cbOpcion;
+        private System.Windows.Forms.TextBox txtnombreProveedor;
+        private System.Windows.Forms.Label lblProveedor;
     }
 }

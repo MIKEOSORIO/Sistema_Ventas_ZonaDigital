@@ -4,12 +4,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sistema_Ventas_ZonaDigital", "Sistema_Ventas_ZonaDigital\Sistema_Ventas_ZonaDigital.csproj", "{FE3EC0EF-7157-4CB0-9AD0-1A4982FB8AFF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F9AF1318-56EB-4EBF-AF5D-F56DC30D1A6B} = {F9AF1318-56EB-4EBF-AF5D-F56DC30D1A6B}
+		{991D567A-4472-4195-A857-6B0D72094829} = {991D567A-4472-4195-A857-6B0D72094829}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDatos", "CapaDatos\CapaDatos.csproj", "{991D567A-4472-4195-A857-6B0D72094829}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaNegocio", "CapaNegocio\CapaNegocio.csproj", "{F9AF1318-56EB-4EBF-AF5D-F56DC30D1A6B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaPresentacion", "CapaPresentacion\CapaPresentacion.csproj", "{97A3DA24-BF6C-4A89-AFFC-B69D106F8B57}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BC5BC9B7-9E7F-4F83-AF3F-34A54BA5CB1C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

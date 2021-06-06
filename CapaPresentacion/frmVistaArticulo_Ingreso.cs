@@ -23,6 +23,9 @@ namespace CapaPresentacion
             this.Mostrar();
         }
         //Método para ocultar columnas
+
+
+        //Método para ocultar columnas
         private void OcultarColumnas()
         {
             this.dataListado.Columns[0].Visible = false;
@@ -45,18 +48,39 @@ namespace CapaPresentacion
             this.dataListado.DataSource = NArticulo.BuscarNombre(this.txtBuscar.Text);
             this.OcultarColumnas();
             lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
-
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void BuscarCodigo()
         {
-            this.BuscarNombre();
+            this.dataListado.DataSource = NArticulo.BuscarCodigo(this.txtBuscar.Text);
+            this.OcultarColumnas();
+            lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            this.BuscarNombre();
+            if (cbBuscar.Text.Equals("Codigo"))
+            {
+                this.BuscarCodigo();
+            }
+            else if (cbBuscar.Text.Equals("Nombre"))
+            {
+                this.BuscarNombre();
+            }
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text.Equals("Codigo"))
+            {
+                this.BuscarCodigo();
+            }
+            else if (txtBuscar.Text.Equals("Nombre"))
+            {
+                this.BuscarNombre();
+            }
+        }
+
 
         private void txtBuscar_DoubleClick(object sender, EventArgs e)
         {
@@ -71,11 +95,19 @@ namespace CapaPresentacion
         private void dataListado_DoubleClick(object sender, EventArgs e)
         {
             frmIngreso form = frmIngreso.GetInstancia();
-            string par1, par2;
+            string par1, par2, par3;
             par1 = Convert.ToString(this.dataListado.CurrentRow.Cells["idarticulo"].Value);
             par2 = Convert.ToString(this.dataListado.CurrentRow.Cells["nombre"].Value);
-            form.setArticulo(par1, par2);
+            par3 = Convert.ToString(this.dataListado.CurrentRow.Cells["codigo"].Value);
+          
+            form.setArticulo(par1, par2, par3);
             this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmArticulo frm = frmArticulo.GetInstancia();
+            frm.Show();
         }
     }
 }

@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,12 +32,41 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>a9942b462dde46dc86b1172053895thumbnail.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,11 +80,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Consultas\frmConsulta_Stock_Articulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\frmConsulta_Stock_Articulos.Designer.cs">
+      <DependentUpon>frmConsulta_Stock_Articulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\frmConsulta_Ventas_Fechas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\frmConsulta_Ventas_Fechas.Designer.cs">
+      <DependentUpon>frmConsulta_Ventas_Fechas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dsPrincipal.cs">
+      <DependentUpon>dsPrincipal.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsPrincipal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPrincipal.xsd</DependentUpon>
+    </Compile>
     <Compile Include="frmArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmArticulo.Designer.cs">
       <DependentUpon>frmArticulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAutorizacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAutorizacion.Designer.cs">
+      <DependentUpon>frmAutorizacion.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmCategoria.cs">
       <SubType>Form</SubType>
@@ -96,6 +154,12 @@
     <Compile Include="frmProveedor.Designer.cs">
       <DependentUpon>frmProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSoporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSoporte.Designer.cs">
+      <DependentUpon>frmSoporte.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTrabajador.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,11 +178,23 @@
     <Compile Include="frmVistaArticulo_Ingreso.Designer.cs">
       <DependentUpon>frmVistaArticulo_Ingreso.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmVistaArticulo_Venta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVistaArticulo_Venta.Designer.cs">
+      <DependentUpon>frmVistaArticulo_Venta.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmVistaCategoria_Articulo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmVistaCategoria_Articulo.Designer.cs">
       <DependentUpon>frmVistaCategoria_Articulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVistaCliente_Venta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVistaCliente_Venta.Designer.cs">
+      <DependentUpon>frmVistaCliente_Venta.cs</DependentUpon>
     </Compile>
     <Compile Include="frmVistaProveedor_Ingreso.cs">
       <SubType>Form</SubType>
@@ -126,12 +202,36 @@
     <Compile Include="frmVistaProveedor_Ingreso.Designer.cs">
       <DependentUpon>frmVistaProveedor_Ingreso.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmVista_Trabajador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVista_Trabajador.Designer.cs">
+      <DependentUpon>frmVista_Trabajador.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\frmInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frmInventario.Designer.cs">
+      <DependentUpon>frmInventario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\frmReporteFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frmReporteFactura.Designer.cs">
+      <DependentUpon>frmReporteFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaNegocio\CapaNegocio.csproj">
@@ -140,8 +240,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Consultas\frmConsulta_Stock_Articulos.resx">
+      <DependentUpon>frmConsulta_Stock_Articulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\frmConsulta_Ventas_Fechas.resx">
+      <DependentUpon>frmConsulta_Ventas_Fechas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmArticulo.resx">
       <DependentUpon>frmArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAutorizacion.resx">
+      <DependentUpon>frmAutorizacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCategoria.resx">
       <DependentUpon>FrmCategoria.cs</DependentUpon>
@@ -164,6 +273,9 @@
     <EmbeddedResource Include="frmProveedor.resx">
       <DependentUpon>frmProveedor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSoporte.resx">
+      <DependentUpon>frmSoporte.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTrabajador.resx">
       <DependentUpon>frmTrabajador.cs</DependentUpon>
     </EmbeddedResource>
@@ -173,63 +285,187 @@
     <EmbeddedResource Include="frmVistaArticulo_Ingreso.resx">
       <DependentUpon>frmVistaArticulo_Ingreso.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmVistaArticulo_Venta.resx">
+      <DependentUpon>frmVistaArticulo_Venta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmVistaCategoria_Articulo.resx">
       <DependentUpon>frmVistaCategoria_Articulo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmVistaCliente_Venta.resx">
+      <DependentUpon>frmVistaCliente_Venta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmVistaProveedor_Ingreso.resx">
       <DependentUpon>frmVistaProveedor_Ingreso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVista_Trabajador.resx">
+      <DependentUpon>frmVista_Trabajador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Factura_PublicoGeneral.rdlc" />
+    <EmbeddedResource Include="Reportes\frmInventario.resx">
+      <DependentUpon>frmInventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\frmReporteFactura.resx">
+      <DependentUpon>frmReporteFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Reporte_Inventario.rdlc" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="a9942b462dde46dc86b1172053895thumbnail.ico" />
+    <Content Include="Resources\173363991_4318758718137150_4274820901318125198_n.png" />
+    <Content Include="Resources\58727362-fondo-gris-oscuro-el-diseño-de-textura-fondo-del-grunge-.jpg" />
+    <Content Include="Resources\a9942b462dde46dc86b1172053895thumbnail.ico" />
+    <Content Include="Resources\a9942b462dde46dc86b1172053895thumbnail.png" />
     <Content Include="Resources\acteck-480x240.png" />
     <Content Include="Resources\add-documents.png" />
+    <Content Include="Resources\agente.png" />
     <Content Include="Resources\agregar-documentos.png" />
+    <Content Include="Resources\ajuste.png" />
+    <Content Include="Resources\almacen.png" />
+    <Content Include="Resources\almacenamiento.png" />
     <Content Include="Resources\anadir-imagen %281%29.png" />
     <Content Include="Resources\anadir-imagen.png" />
     <Content Include="Resources\analizando %281%29.png" />
     <Content Include="Resources\analizando.png" />
     <Content Include="Resources\articulo.png" />
     <Content Include="Resources\articulos-completos-dentro-de-una-bolsa-de-compras.png" />
+    <Content Include="Resources\ayuda.png" />
+    <Content Include="Resources\back-up.png" />
+    <Content Include="Resources\barra de estado.png" />
     <Content Include="Resources\bolsa-de-la-compra.png" />
+    <Content Include="Resources\boton-de-informacion.png" />
+    <Content Include="Resources\boton-de-interfaz-de-opcion-de-visualizacion-en-cascada.png" />
     <Content Include="Resources\buscar.png" />
+    <Content Include="Resources\caja-registradora.png" />
+    <Content Include="Resources\caja.png" />
     <Content Include="Resources\cancelar.png" />
+    <None Include="Resources\capital.png" />
     <Content Include="Resources\categorias.png" />
+    <Content Include="Resources\centro-de-llamadas.png" />
+    <Content Include="Resources\cerrar-ventana.png" />
+    <Content Include="Resources\cliente.png" />
     <Content Include="Resources\coding.png" />
+    <Content Include="Resources\compras.png" />
+    <Content Include="Resources\compras0.png" />
+    <Content Include="Resources\computadora-portatil.png" />
+    <Content Include="Resources\comunidad.png" />
+    <Content Include="Resources\configuracion-del-navegador-con-ventana-y-rueda-dentada-dentro-de-un-circulo.png" />
     <Content Include="Resources\configuraciones %281%29.png" />
     <Content Include="Resources\configuraciones.png" />
+    <Content Include="Resources\contenido.png" />
+    <Content Include="Resources\datos.png" />
     <Content Include="Resources\delete-file-symbol-of-paper-sheet-with-text.png" />
+    <Content Include="Resources\desarrollo-web.png" />
     <Content Include="Resources\disco-flexible.png" />
     <Content Include="Resources\diskette.png" />
     <Content Include="Resources\editar.png" />
+    <Content Include="Resources\elegate.png" />
     <Content Include="Resources\eliminar.png" />
+    <Content Include="Resources\empleados.png" />
+    <Content Include="Resources\en-stock.png" />
     <Content Include="Resources\escoba.png" />
     <Content Include="Resources\estadisticas.png" />
+    <Content Include="Resources\evacuacion.png" />
     <Content Include="Resources\exit %281%29.png" />
     <Content Include="Resources\exit %282%29.png" />
     <Content Include="Resources\exit %283%29.png" />
     <Content Include="Resources\exit %284%29.png" />
     <Content Include="Resources\exit.png" />
+    <Content Include="Resources\facebook %282%29.png" />
+    <Content Include="Resources\fecha.png" />
     <Content Include="Resources\file.png" />
+    <Resource Include="Resources\file21.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Resources\gestion-del-tiempo.png" />
+    <Content Include="Resources\hp-logo-1.png" />
+    <Content Include="Resources\icono-vector-calificacion-cinco-estrellas_38133-30.jpg" />
+    <Content Include="Resources\icons8-editar-propiedad-64.png" />
+    <Content Include="Resources\icons8-estrella-128.png" />
+    <Content Include="Resources\icons8-proveedor-100.png" />
+    <Content Include="Resources\icons8-tarjeta-de-empleado-100.png" />
+    <Content Include="Resources\icons8-volver-a-escanear-el-documento-100.png" />
     <Content Include="Resources\imagen %281%29.png" />
     <Content Include="Resources\imagen %282%29.png" />
     <Content Include="Resources\imagen %283%29.png" />
     <Content Include="Resources\imagen.png" />
     <Content Include="Resources\impresora.png" />
+    <Content Include="Resources\ingresos.png" />
+    <Content Include="Resources\lanzamiento-del-producto.png" />
+    <Content Include="Resources\lenovo.png" />
     <Content Include="Resources\logitech.png" />
     <Content Include="Resources\logocircular.png" />
     <Content Include="Resources\LogoFara.png" />
     <Content Include="Resources\lupa %281%29.png" />
     <Content Include="Resources\lupa.png" />
+    <Content Include="Resources\mantenimiento-web.png" />
+    <Content Include="Resources\maquina-elevadora.png" />
+    <Content Include="Resources\menos.png" />
+    <Content Include="Resources\mockup.png" />
+    <Content Include="Resources\NDP46-KB3045560-Web.exe" />
+    <Content Include="Resources\NDP47-KB3186497-x86-x64-AllOS-ENU.exe" />
+    <Content Include="Resources\ndp472-kb4054530-x86-x64-allos-enu.exe" />
+    <Content Include="Resources\NetFx64.exe" />
     <Content Include="Resources\new-file %281%29.png" />
     <Content Include="Resources\new-file.png" />
+    <Content Include="Resources\nueva-ventana.png" />
     <Content Include="Resources\png-transparent-kingston-technology-juniper-networks-logo-solid-state-drive-computer-memory-computer-monitor-miscellaneous-company-text.png" />
+    <Content Include="Resources\precio.png" />
+    <Content Include="Resources\presentacion.png" />
+    <Content Include="Resources\proveedor.png" />
+    <Content Include="Resources\rechazado.png" />
+    <Content Include="Resources\recibo.png" />
     <Content Include="Resources\search.png" />
     <Content Include="Resources\unnamed.ico" />
+    <Content Include="Resources\unnamed.jpg" />
+    <Content Include="Resources\ventana-abierta-con-ajuste-de-altura.png" />
+    <Content Include="Resources\ventana-abierta-con-simbolo-de-estrella.png" />
+    <Content Include="Resources\ventas %281%29.png" />
+    <Content Include="Resources\ventas.png" />
+    <Content Include="Resources\ver.png" />
+    <Content Include="Resources\VisualBasicPowerPacks3Setup.exe" />
+    <Content Include="Resources\VisualBasicPowerPacksSetup.exe" />
+    <Content Include="Resources\WhatsApp Image 2021-04-24 at 4.59.46 PM.jpeg" />
+    <Content Include="Resources\WhatsApp Image 2021-05-11 at 5.32.17 PM.jpeg" />
+    <Content Include="Resources\whatsapp.png" />
     <Content Include="Resources\xiaomi.png" />
+    <Content Include="Resources\xiaomi12.png" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="dsPrincipal.xsc">
+      <DependentUpon>dsPrincipal.xsd</DependentUpon>
+    </None>
+    <None Include="dsPrincipal.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPrincipal.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsPrincipal.xss">
+      <DependentUpon>dsPrincipal.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

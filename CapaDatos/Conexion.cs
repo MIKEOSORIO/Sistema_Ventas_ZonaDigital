@@ -9,10 +9,10 @@ using System.Data.SqlClient;
 
 namespace CapaDatos
 {
-    class Conexion
-    {   //conexion con la BD
-        //bdventas-zonadigital-83.database.windows.net; UserID = serveradminzd; Password = servidor@zonadigital83;
-        //
-        public static string Cn = " Data Source = DESKTOP-E24RF6D ;  Initial Catalog = dbventas ; Integrated Security = true";
+    public class Conexion
+    {
+       // public static string Cn = Properties.Settings.Default.Cn;
+        public static string Cn = "Data Source=DESKTOP-E24RF6D;Initial Catalog=dbventas;Integrated Security=True"; //conectamos la BD local para pruebas
+        //public static string Cn = "Data Source=bdventas-zonadigital-83.database.windows.net;Initial Catalog=dbventas; User ID=serveradminzd;Password=servidor@zonadigital83";
     }
 }

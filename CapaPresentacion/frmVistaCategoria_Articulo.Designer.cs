@@ -49,7 +49,7 @@ namespace CapaPresentacion
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(443, 24);
+            this.pictureBox1.Location = new System.Drawing.Point(387, 28);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(91, 84);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -153,9 +153,9 @@ namespace CapaPresentacion
             this.label1.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(274, 49);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(149, 36);
+            this.label1.Size = new System.Drawing.Size(107, 36);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Categorías";
+            this.label1.Text = "Grupos";
             // 
             // frmVistaCategoria_Articulo
             // 

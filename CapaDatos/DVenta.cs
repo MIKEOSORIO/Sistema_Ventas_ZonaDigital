@@ -19,7 +19,12 @@ namespace CapaDatos
         private string _Tipo_Comprobante;
         private string _Serie;
         private string _Correlativo;
-        private decimal _Igv;
+        private decimal _Iva;
+        private string _Tipo_Venta;
+        private string _Nombre_Trabajador;
+        private string _Num_Agente;
+        private string _Status;
+        private string _Agente;
 
         public int Idventa
         {
@@ -38,6 +43,7 @@ namespace CapaDatos
             get { return _Idtrabajador; }
             set { _Idtrabajador = value; }
         }
+
 
         public DateTime Fecha
         {
@@ -64,11 +70,41 @@ namespace CapaDatos
         }
 
 
-        public decimal Igv
+        public decimal Iva
         {
-            get { return _Igv; }
-            set { _Igv = value; }
+            get { return _Iva; }
+            set { _Iva = value; }
         }
+
+        public string Tipo_Venta
+        {
+            get { return _Tipo_Venta; }
+            set { _Tipo_Venta = value; }
+        }
+
+        public string Nombre_Trabajador
+        {
+            get { return _Nombre_Trabajador; }
+            set { _Nombre_Trabajador = value; }
+        }
+
+        public string Num_Agente
+        {
+            get { return _Num_Agente; }
+            set { _Num_Agente = value; }
+        }
+
+        public string Status
+        {
+            get { return _Status; }
+            set { _Status = value; }
+        }
+        public string Agente
+        {
+            get { return _Agente; }
+            set { _Agente = value; }
+        }
+
         //Constructores 
         public DVenta()
         {
@@ -76,16 +112,22 @@ namespace CapaDatos
         }
         public DVenta(int idventa, int idcliente, int idtrabajador,
             DateTime fecha, string tipo_comprobante, string serie,
-            string correlativo, decimal igv)
+            string correlativo, decimal iva, string tipo_venta, string nombre_trabajador, string num_agente, string status, string agente)
         {
             this.Idventa = idventa;
             this.Idcliente = idcliente;
             this.Idtrabajador = idtrabajador;
+
             this.Fecha = fecha;
             this.Tipo_Comprobante = tipo_comprobante;
             this.Serie = serie;
             this.Correlativo = correlativo;
-            this.Igv = igv;
+            this.Iva = iva;
+            this.Tipo_Venta = tipo_venta;
+            this.Num_Agente = num_agente;
+            this.Nombre_Trabajador = nombre_trabajador;
+            this.Status = status;
+            this.Agente = agente;
 
         }
         //Métodos
@@ -197,14 +239,48 @@ namespace CapaDatos
                 ParCorrelativo.Value = Venta.Correlativo;
                 SqlCmd.Parameters.Add(ParCorrelativo);
 
-                SqlParameter ParIgv = new SqlParameter();
-                ParIgv.ParameterName = "@igv";
-                ParIgv.SqlDbType = SqlDbType.Decimal;
-                ParIgv.Precision = 4;
-                ParIgv.Scale = 2;
-                ParIgv.Value = Venta.Igv;
-                SqlCmd.Parameters.Add(ParIgv);
+                SqlParameter ParIva = new SqlParameter();
+                ParIva.ParameterName = "@igv";
+                ParIva.SqlDbType = SqlDbType.Decimal;
+                ParIva.Precision = 4;
+                ParIva.Scale = 2;
+                ParIva.Value = Venta.Iva;
+                SqlCmd.Parameters.Add(ParIva);
 
+                SqlParameter ParTipo_Venta = new SqlParameter();
+                ParTipo_Venta.ParameterName = "@tipo_venta";
+                ParTipo_Venta.SqlDbType = SqlDbType.VarChar;
+                ParTipo_Venta.Size = 25;
+                ParTipo_Venta.Value = Venta.Tipo_Venta;
+                SqlCmd.Parameters.Add(ParTipo_Venta);
+
+                SqlParameter ParNum_Agente = new SqlParameter();
+                ParNum_Agente.ParameterName = "@num_agente";
+                ParNum_Agente.SqlDbType = SqlDbType.VarChar;
+                ParNum_Agente.Size = 8;
+                ParNum_Agente.Value = Venta.Num_Agente;
+                SqlCmd.Parameters.Add(ParNum_Agente);
+
+                SqlParameter ParNombre_Trabajador = new SqlParameter();
+                ParNombre_Trabajador.ParameterName = "@nombre_trabajador";
+                ParNombre_Trabajador.SqlDbType = SqlDbType.VarChar;
+                ParNombre_Trabajador.Size = 80;
+                ParNombre_Trabajador.Value = Venta.Nombre_Trabajador;
+                SqlCmd.Parameters.Add(ParNombre_Trabajador);
+
+                SqlParameter ParStatus = new SqlParameter();
+                ParStatus.ParameterName = "@status";
+                ParStatus.SqlDbType = SqlDbType.VarChar;
+                ParStatus.Size = 10;
+                ParStatus.Value = Venta.Status;
+                SqlCmd.Parameters.Add(ParStatus);
+
+                SqlParameter ParAgente = new SqlParameter();
+                ParAgente.ParameterName = "@agente";
+                ParAgente.SqlDbType = SqlDbType.VarChar;
+                ParAgente.Size = 10;
+                ParAgente.Value = Venta.Agente;
+                SqlCmd.Parameters.Add(ParAgente);
 
                 //Ejecutamos nuestro comando
 
@@ -279,7 +355,6 @@ namespace CapaDatos
                 ParIdventa.Value = Venta.Idventa;
                 SqlCmd.Parameters.Add(ParIdventa);
 
-
                 //Ejecutamos nuestro comando
 
                 rpta = SqlCmd.ExecuteNonQuery() == 1 ? "OK" : "OK";
@@ -324,7 +399,7 @@ namespace CapaDatos
 
 
         //Método Buscarfechas
-        public DataTable BuscarFechas(String TextoBuscar, String TextoBuscar2)
+        public DataTable BuscarFechas(String Status, String TextoBuscar, String TextoBuscar2)
         {
             DataTable DtResultado = new DataTable("venta");
             SqlConnection SqlCon = new SqlConnection();
@@ -336,19 +411,28 @@ namespace CapaDatos
                 SqlCmd.CommandText = "spbuscar_venta_fecha";
                 SqlCmd.CommandType = CommandType.StoredProcedure;
 
+
+                SqlParameter ParStatus = new SqlParameter();
+                ParStatus.ParameterName = "@status";
+                ParStatus.SqlDbType = SqlDbType.VarChar;
+                ParStatus.Size = 10;
+                ParStatus.Value = Status;
+                SqlCmd.Parameters.Add(ParStatus);
+
                 SqlParameter ParTextoBuscar = new SqlParameter();
                 ParTextoBuscar.ParameterName = "@textobuscar";
-                ParTextoBuscar.SqlDbType = SqlDbType.VarChar;
+                ParTextoBuscar.SqlDbType = SqlDbType.Date;
                 ParTextoBuscar.Size = 50;
                 ParTextoBuscar.Value = TextoBuscar;
                 SqlCmd.Parameters.Add(ParTextoBuscar);
 
                 SqlParameter ParTextoBuscar2 = new SqlParameter();
                 ParTextoBuscar2.ParameterName = "@textobuscar2";
-                ParTextoBuscar2.SqlDbType = SqlDbType.VarChar;
+                ParTextoBuscar2.SqlDbType = SqlDbType.Date;
                 ParTextoBuscar2.Size = 50;
                 ParTextoBuscar2.Value = TextoBuscar2;
                 SqlCmd.Parameters.Add(ParTextoBuscar2);
+
 
                 SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);
                 SqlDat.Fill(DtResultado);
@@ -444,6 +528,51 @@ namespace CapaDatos
                 ParTextoBuscar.Size = 50;
                 ParTextoBuscar.Value = TextoBuscar;
                 SqlCmd.Parameters.Add(ParTextoBuscar);
+
+                SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);
+                SqlDat.Fill(DtResultado);
+
+            }
+            catch (Exception ex)
+            {
+                DtResultado = null;
+            }
+            return DtResultado;
+
+        }
+
+        public DataTable Buscar_Ventas_Trabajador(String TextoBuscar, String TextoBuscar1, String TextoBuscar2)
+        {
+            DataTable DtResultado = new DataTable("venta");
+            SqlConnection SqlCon = new SqlConnection();
+            try
+            {
+                SqlCon.ConnectionString = Conexion.Cn;
+                SqlCommand SqlCmd = new SqlCommand();
+                SqlCmd.Connection = SqlCon;
+                SqlCmd.CommandText = "spbuscar_ventas_trabajador";
+                SqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParTextoBuscar = new SqlParameter();
+                ParTextoBuscar.ParameterName = "@textobuscar";
+                ParTextoBuscar.SqlDbType = SqlDbType.VarChar;
+                ParTextoBuscar.Size = 8;
+                ParTextoBuscar.Value = TextoBuscar;
+                SqlCmd.Parameters.Add(ParTextoBuscar);
+
+                SqlParameter ParTextoBuscar1 = new SqlParameter();
+                ParTextoBuscar1.ParameterName = "@textobuscar1";
+                ParTextoBuscar1.SqlDbType = SqlDbType.Date;
+                ParTextoBuscar1.Size = 20;
+                ParTextoBuscar1.Value = TextoBuscar1;
+                SqlCmd.Parameters.Add(ParTextoBuscar1);
+
+                SqlParameter ParTextoBuscar2 = new SqlParameter();
+                ParTextoBuscar2.ParameterName = "@textobuscar2";
+                ParTextoBuscar2.SqlDbType = SqlDbType.Date;
+                ParTextoBuscar2.Size = 20;
+                ParTextoBuscar2.Value = TextoBuscar2;
+                SqlCmd.Parameters.Add(ParTextoBuscar2);
 
                 SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);
                 SqlDat.Fill(DtResultado);

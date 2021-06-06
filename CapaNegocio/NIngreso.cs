@@ -12,7 +12,7 @@ namespace CapaNegocio
     public class NIngreso
     {
         public static string Insertar(int idtrabajador, int idproveedor, DateTime fecha,
-            string tipo_comprobante, string serie, string correlativo, decimal igv,
+            string tipo_comprobante, string serie, string correlativo, decimal iva,
             string estado, DataTable dtDetalles)
         {
             DIngreso Obj = new DIngreso();
@@ -22,7 +22,7 @@ namespace CapaNegocio
             Obj.Tipo_Comprobante = tipo_comprobante;
             Obj.Serie = serie;
             Obj.Correlativo = correlativo;
-            Obj.Igv = igv;
+            Obj.Iva = iva;
             Obj.Estado = estado;
             List<DDetalle_Ingreso> detalles = new List<DDetalle_Ingreso>();
             foreach (DataRow row in dtDetalles.Rows)
@@ -60,6 +60,18 @@ namespace CapaNegocio
         {
             DIngreso Obj = new DIngreso();
             return Obj.BuscarFechas(textobuscar, textobuscar2);
+        }
+
+        public static DataTable BuscarProveedorFechas(string proveedor, string textobuscar, string textobuscar2)
+        {
+            DIngreso Obj = new DIngreso();
+            return Obj.BuscarProveedorFechas(proveedor, textobuscar, textobuscar2);
+        }
+
+        public static DataTable BuscarProveedor(string proveedor)
+        {
+            DIngreso Obj = new DIngreso();
+            return Obj.BuscarProveedor(proveedor);
         }
 
         public static DataTable MostrarDetalle(string textobuscar)

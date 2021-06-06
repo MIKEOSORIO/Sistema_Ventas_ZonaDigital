@@ -19,7 +19,7 @@ namespace CapaDatos
         private string _Tipo_Comprobante;
         private string _Serie;
         private string _Correlativo;
-        private decimal _Igv;
+        private decimal _Iva;
         private string _Estado;
 
         //Propiedades
@@ -68,10 +68,10 @@ namespace CapaDatos
             set { _Correlativo = value; }
         }
 
-        public decimal Igv
+        public decimal Iva
         {
-            get { return _Igv; }
-            set { _Igv = value; }
+            get { return _Iva; }
+            set { _Iva = value; }
         }
 
 
@@ -88,7 +88,7 @@ namespace CapaDatos
 
         public DIngreso(int idingreso, int idtrabajador, int idproveedor,
             DateTime fecha, string tipo_comprobante, string serie,
-            string correlativo, decimal igv, string estado)
+            string correlativo, decimal iva, string estado)
         {
             this.Idingreso = idingreso;
             this.Idtrabajador = idtrabajador;
@@ -97,7 +97,7 @@ namespace CapaDatos
             this.Tipo_Comprobante = tipo_comprobante;
             this.Serie = serie;
             this.Correlativo = correlativo;
-            this.Igv = igv;
+            this.Iva = iva;
             this.Estado = estado;
         }
         //Métodos
@@ -170,7 +170,7 @@ namespace CapaDatos
                 ParIgv.SqlDbType = SqlDbType.Decimal;
                 ParIgv.Precision = 4;
                 ParIgv.Scale = 2;
-                ParIgv.Value = Ingreso.Igv;
+                ParIgv.Value = Ingreso.Iva;
                 SqlCmd.Parameters.Add(ParIgv);
 
                 SqlParameter ParEstado = new SqlParameter();
@@ -302,14 +302,14 @@ namespace CapaDatos
 
                 SqlParameter ParTextoBuscar = new SqlParameter();
                 ParTextoBuscar.ParameterName = "@textobuscar";
-                ParTextoBuscar.SqlDbType = SqlDbType.VarChar;
+                ParTextoBuscar.SqlDbType = SqlDbType.Date;
                 ParTextoBuscar.Size = 50;
                 ParTextoBuscar.Value = TextoBuscar;
                 SqlCmd.Parameters.Add(ParTextoBuscar);
 
                 SqlParameter ParTextoBuscar2 = new SqlParameter();
                 ParTextoBuscar2.ParameterName = "@textobuscar2";
-                ParTextoBuscar2.SqlDbType = SqlDbType.VarChar;
+                ParTextoBuscar2.SqlDbType = SqlDbType.Date; //(aqui esta el error el tipo de dato es date no varchar)
                 ParTextoBuscar2.Size = 50;
                 ParTextoBuscar2.Value = TextoBuscar2;
                 SqlCmd.Parameters.Add(ParTextoBuscar2);
@@ -326,6 +326,81 @@ namespace CapaDatos
 
         }
 
+        public DataTable BuscarProveedorFechas(String Proveedor, String TextoBuscar, String TextoBuscar2)
+        {
+            DataTable DtResultado = new DataTable("ingreso");
+            SqlConnection SqlCon = new SqlConnection();
+            try
+            {
+                SqlCon.ConnectionString = Conexion.Cn;
+                SqlCommand SqlCmd = new SqlCommand();
+                SqlCmd.Connection = SqlCon;
+                SqlCmd.CommandText = "spbuscar_ingreso_proveedor_fechas";
+                SqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParProveedor = new SqlParameter();
+                ParProveedor.ParameterName = "@proveedor";
+                ParProveedor.SqlDbType = SqlDbType.VarChar;
+                ParProveedor.Size = 150;
+                ParProveedor.Value = Proveedor;
+                SqlCmd.Parameters.Add(ParProveedor);
+
+                SqlParameter ParTextoBuscar = new SqlParameter();
+                ParTextoBuscar.ParameterName = "@textobuscar";
+                ParTextoBuscar.SqlDbType = SqlDbType.Date;
+                ParTextoBuscar.Size = 50;
+                ParTextoBuscar.Value = TextoBuscar;
+                SqlCmd.Parameters.Add(ParTextoBuscar);
+
+                SqlParameter ParTextoBuscar2 = new SqlParameter();
+                ParTextoBuscar2.ParameterName = "@textobuscar2";
+                ParTextoBuscar2.SqlDbType = SqlDbType.Date; 
+                ParTextoBuscar2.Size = 50;
+                ParTextoBuscar2.Value = TextoBuscar2;
+                SqlCmd.Parameters.Add(ParTextoBuscar2);
+
+                SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);
+                SqlDat.Fill(DtResultado);
+
+            }
+            catch (Exception ex)
+            {
+                DtResultado = null;
+            }
+            return DtResultado;
+
+        }
+
+        public DataTable BuscarProveedor(String Proveedor)
+        {
+            DataTable DtResultado = new DataTable("ingreso");
+            SqlConnection SqlCon = new SqlConnection();
+            try
+            {
+                SqlCon.ConnectionString = Conexion.Cn;
+                SqlCommand SqlCmd = new SqlCommand();
+                SqlCmd.Connection = SqlCon;
+                SqlCmd.CommandText = "spbuscar_ingreso_proveedor";
+                SqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParProveedor = new SqlParameter();
+                ParProveedor.ParameterName = "@proveedor";
+                ParProveedor.SqlDbType = SqlDbType.VarChar;
+                ParProveedor.Size = 150;
+                ParProveedor.Value = Proveedor;
+                SqlCmd.Parameters.Add(ParProveedor);
+
+                SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);
+                SqlDat.Fill(DtResultado);
+
+            }
+            catch (Exception ex)
+            {
+                DtResultado = null;
+            }
+            return DtResultado;
+
+        }
 
         public DataTable MostrarDetalle(String TextoBuscar)
         {

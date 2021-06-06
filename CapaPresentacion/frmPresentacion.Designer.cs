@@ -71,7 +71,7 @@ namespace CapaPresentacion
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(472, 18);
+            this.pictureBox1.Location = new System.Drawing.Point(421, 18);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(91, 84);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -239,7 +239,7 @@ namespace CapaPresentacion
             this.groupBox1.Size = new System.Drawing.Size(653, 254);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Presentaciones";
+            this.groupBox1.Text = "Grupos";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // tabPage2
@@ -333,7 +333,7 @@ namespace CapaPresentacion
             this.tabPage1.Location = new System.Drawing.Point(4, 30);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(689, 316);
+            this.tabPage1.Size = new System.Drawing.Size(689, 287);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Listado";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -357,11 +357,11 @@ namespace CapaPresentacion
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(266, 43);
+            this.label1.Location = new System.Drawing.Point(308, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 36);
+            this.label1.Size = new System.Drawing.Size(107, 36);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Presentaciones";
+            this.label1.Text = "Grupos";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // frmPresentacion

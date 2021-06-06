@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0006: No se encontró el archivo de metadatos 'C:\Users\Miguel_Cupul\Desktop\Sistema_Ventas_ZonaDigital\CapaNegocio\bin\Debug\CapaNegocio.exe'
+dotnet_diagnostic.CS0006.severity = none

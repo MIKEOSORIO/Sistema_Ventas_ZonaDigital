@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 using CapaPresentacion;
+
 
 namespace Sistema_Ventas_ZonaDigital
 {
-    static class Program
+     class Program
     {
         /// <summary>
         /// Punto de entrada principal para la aplicación.
@@ -19,5 +21,6 @@ namespace Sistema_Ventas_ZonaDigital
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmLogin());
         }
+        
     }
 }

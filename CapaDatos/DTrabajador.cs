@@ -21,11 +21,11 @@ namespace CapaDatos
         private string _Direccion;
         private string _Telefono;
         private string _Email;
-        private string _Acceso;
         private string _Usuario;
         private string _Password;
         private string _TextoBuscar;
-
+        private string _Num_Agente;
+        private string _Acceso;
         //Propiedades
 
         public string TextoBuscar
@@ -111,6 +111,12 @@ namespace CapaDatos
             set { _Idtrabajador = value; }
         }
 
+        public string Num_Agente
+        {
+            get { return _Num_Agente; }
+            set { _Num_Agente = value; }
+        }
+
         //Constructores
         public DTrabajador()
         {
@@ -119,7 +125,7 @@ namespace CapaDatos
 
         public DTrabajador(int idtrabajador, string nombre, string apellidos, string sexo,
             DateTime fecha_nacimiento, string num_documento, string direccion, string telefono,
-            string email, string acceso, string usuario, string password, string textobuscar)
+            string email, string acceso, string usuario, string password, string textobuscar, string num_agente)
         {
             this.Idtrabajador = idtrabajador;
             this.Nombre = nombre;
@@ -134,6 +140,7 @@ namespace CapaDatos
             this.Usuario = usuario;
             this.Password = password;
             this.TextoBuscar = textobuscar;
+            this.Num_Agente = num_agente;
 
         }
 
@@ -235,6 +242,13 @@ namespace CapaDatos
                 ParPassword.Size = 50;
                 ParPassword.Value = Trabajador.Password;
                 SqlCmd.Parameters.Add(ParPassword);
+
+                SqlParameter ParNum_Agente = new SqlParameter();
+                ParNum_Agente.ParameterName = "@num_agente";
+                ParNum_Agente.SqlDbType = SqlDbType.VarChar;
+                ParNum_Agente.Size = 8;
+                ParNum_Agente.Value = Trabajador.Num_Agente;
+                SqlCmd.Parameters.Add(ParNum_Agente);
 
 
                 //Ejecutamos nuestro comando
@@ -353,6 +367,13 @@ namespace CapaDatos
                 ParPassword.Size = 50;
                 ParPassword.Value = Trabajador.Password;
                 SqlCmd.Parameters.Add(ParPassword);
+
+                SqlParameter ParNum_Agente = new SqlParameter();
+                ParNum_Agente.ParameterName = "@num_agente";
+                ParNum_Agente.SqlDbType = SqlDbType.VarChar;
+                ParNum_Agente.Size = 8;
+                ParNum_Agente.Value = Trabajador.Num_Agente;
+                SqlCmd.Parameters.Add(ParNum_Agente);
 
 
                 //Ejecutamos nuestro comando
@@ -503,6 +524,36 @@ namespace CapaDatos
             return DtResultado;
 
         }
+        public DataTable BuscarNum_Agente(DTrabajador Trabajador)
+        {
+            DataTable DtResultado = new DataTable("trabajador");
+            SqlConnection SqlCon = new SqlConnection();
+            try
+            {
+                SqlCon.ConnectionString = Conexion.Cn;
+                SqlCommand SqlCmd = new SqlCommand();
+                SqlCmd.Connection = SqlCon;
+                SqlCmd.CommandText = "spbuscar_trabajador_num_agente";
+                SqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParTextoBuscar = new SqlParameter();
+                ParTextoBuscar.ParameterName = "@textobuscar";
+                ParTextoBuscar.SqlDbType = SqlDbType.VarChar;
+                ParTextoBuscar.Size = 50;
+                ParTextoBuscar.Value = Trabajador.TextoBuscar;
+                SqlCmd.Parameters.Add(ParTextoBuscar);
+
+                SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);
+                SqlDat.Fill(DtResultado);
+
+            }
+            catch (Exception ex)
+            {
+                DtResultado = null;
+            }
+            return DtResultado;
+
+        }
 
         public DataTable Login(DTrabajador Trabajador)
         {
@@ -522,6 +573,44 @@ namespace CapaDatos
                 ParUsuario.Size = 20;
                 ParUsuario.Value = Trabajador.Usuario;
                 SqlCmd.Parameters.Add(ParUsuario);
+
+                SqlParameter ParPassword = new SqlParameter();
+                ParPassword.ParameterName = "@password";
+                ParPassword.SqlDbType = SqlDbType.VarChar;
+                ParPassword.Size = 20;
+                ParPassword.Value = Trabajador.Password;
+                SqlCmd.Parameters.Add(ParPassword);
+
+                SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);
+                SqlDat.Fill(DtResultado);
+
+            }
+            catch (Exception ex)
+            {
+                DtResultado = null;
+            }
+            return DtResultado;
+
+        }
+
+        public DataTable Autorizacion(DTrabajador Trabajador)
+        {
+            DataTable DtResultado = new DataTable("trabajador");
+            SqlConnection SqlCon = new SqlConnection();
+            try
+            {
+                SqlCon.ConnectionString = Conexion.Cn;
+                SqlCommand SqlCmd = new SqlCommand();
+                SqlCmd.Connection = SqlCon;
+                SqlCmd.CommandText = "spAutorizacion";
+                SqlCmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter ParAgente = new SqlParameter();
+                ParAgente.ParameterName = "@agente";
+                ParAgente.SqlDbType = SqlDbType.VarChar;
+                ParAgente.Size = 10;
+                ParAgente.Value = Trabajador.Num_Agente;
+                SqlCmd.Parameters.Add(ParAgente);
 
                 SqlParameter ParPassword = new SqlParameter();
                 ParPassword.ParameterName = "@password";

@@ -19,8 +19,6 @@ namespace CapaDatos
         private decimal _Precio_Venta;
         private int _Stock_Inicial;
         private int _Stock_Actual;
-        private DateTime _Fecha_Produccion;
-        private DateTime _Fecha_Vencimiento;
 
         //Propiedades
         public int Iddetalle_Ingreso
@@ -68,17 +66,7 @@ namespace CapaDatos
             set { _Stock_Actual = value; }
         }
 
-        public DateTime Fecha_Produccion
-        {
-            get { return _Fecha_Produccion; }
-            set { _Fecha_Produccion = value; }
-        }
 
-        public DateTime Fecha_Vencimiento
-        {
-            get { return _Fecha_Vencimiento; }
-            set { _Fecha_Vencimiento = value; }
-        }
         //Constructores 
         public DDetalle_Ingreso()
         {
@@ -86,8 +74,7 @@ namespace CapaDatos
         }
         public DDetalle_Ingreso(int iddetalle_ingreso, int idingreso,
             int idarticulo, decimal precio_compra, decimal precio_venta,
-            int stock_inicial, int stock_actual, DateTime fecha_produccion,
-            DateTime fecha_vencimiento)
+            int stock_inicial, int stock_actual)
         {
             this.Iddetalle_Ingreso = iddetalle_ingreso;
             this.Idingreso = idingreso;
@@ -96,8 +83,6 @@ namespace CapaDatos
             this.Precio_Venta = precio_venta;
             this.Stock_Inicial = stock_inicial;
             this.Stock_Actual = stock_actual;
-            this.Fecha_Produccion = fecha_produccion;
-            this.Fecha_Vencimiento = fecha_vencimiento;
 
         }
 
@@ -160,17 +145,6 @@ namespace CapaDatos
                 ParStock_Inicial.Value = Detalle_Ingreso.Stock_Inicial;
                 SqlCmd.Parameters.Add(ParStock_Inicial);
 
-                SqlParameter ParFecha_Produccion = new SqlParameter();
-                ParFecha_Produccion.ParameterName = "@fecha_produccion";
-                ParFecha_Produccion.SqlDbType = SqlDbType.Date;
-                ParFecha_Produccion.Value = Detalle_Ingreso.Fecha_Produccion;
-                SqlCmd.Parameters.Add(ParFecha_Produccion);
-
-                SqlParameter ParFecha_Vencimiento = new SqlParameter();
-                ParFecha_Vencimiento.ParameterName = "@fecha_vencimiento";
-                ParFecha_Vencimiento.SqlDbType = SqlDbType.Date;
-                ParFecha_Vencimiento.Value = Detalle_Ingreso.Fecha_Vencimiento;
-                SqlCmd.Parameters.Add(ParFecha_Vencimiento);
 
                 //Ejecutamos nuestro comando
 

@@ -115,6 +115,7 @@ namespace CapaPresentacion
         private void GestionUsuarios()
         {
             //Controlamos los accesos Administrador, Vendedor, Almacenero
+            //COntrolar los accesos
             if (Acceso == "Administrador")
             {
                 this.MnuAlmacen.Enabled = true;
@@ -123,7 +124,7 @@ namespace CapaPresentacion
                 this.MnuMantenimiento.Enabled = true;
                 this.MnuConsultas.Enabled = true;
                 this.MnuHerramientas.Enabled = true;
-                this.MnuVentas.Enabled = true;
+                this.TsCompras.Enabled = true;
                 this.TsVentas.Enabled = true;
 
             }
@@ -135,8 +136,9 @@ namespace CapaPresentacion
                 this.MnuMantenimiento.Enabled = false;
                 this.MnuConsultas.Enabled = true;
                 this.MnuHerramientas.Enabled = true;
-                this.MnuVentas.Enabled = false;
+                this.TsCompras.Enabled = false;
                 this.TsVentas.Enabled = true;
+
             }
             else if (Acceso == "Almacenero")
             {
@@ -146,8 +148,9 @@ namespace CapaPresentacion
                 this.MnuMantenimiento.Enabled = false;
                 this.MnuConsultas.Enabled = true;
                 this.MnuHerramientas.Enabled = true;
-                this.MnuVentas.Enabled = true;
-                this.TsVentas.Enabled = true;
+                this.TsCompras.Enabled = true;
+                this.TsVentas.Enabled = false;
+
             }
             else
             {
@@ -157,8 +160,9 @@ namespace CapaPresentacion
                 this.MnuMantenimiento.Enabled = false;
                 this.MnuConsultas.Enabled = false;
                 this.MnuHerramientas.Enabled = false;
-                this.MnuVentas.Enabled = false;
+                this.TsCompras.Enabled = false;
                 this.TsVentas.Enabled = false;
+
             }
         }
 
@@ -182,13 +186,6 @@ namespace CapaPresentacion
         private void presentacionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPresentacion frm = new frmPresentacion();
-            frm.MdiParent = this;
-            frm.Show();
-        }
-
-        private void artículosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmArticulo frm = frmArticulo.GetInstancia();
             frm.MdiParent = this;
             frm.Show();
         }
@@ -231,6 +228,68 @@ namespace CapaPresentacion
             frm.Show();
             frm.Idtrabajador = Convert.ToInt32(this.Idtrabajador);
 
+
+        }
+       
+        private void ventasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmVenta frm = frmVenta.GetInstancia();
+            frm.MdiParent = this;
+            frm.Show();
+            frm.Idtrabajador = Convert.ToInt32(this.Idtrabajador);
+        }
+
+        private void MnuHerramientas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stockDeArtículosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Consultas.frmConsulta_Stock_Articulos frm = new Consultas.frmConsulta_Stock_Articulos();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void comprasPorFechasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           // Consultas.FrmConsultaCompras frm = new Consultas.FrmConsultaCompras();
+           // frm.MdiParent = this;
+           // frm.Show();
+           // frm.Idtrabajador = Convert.ToInt32(this.Idtrabajador);
+        }
+
+        private void frmPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void ventasPorFechasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           Consultas.frmConsulta_Ventas_Fechas frm = new Consultas.frmConsulta_Ventas_Fechas();
+           frm.MdiParent = this;
+           frm.Show();
+           // frm.Idtrabajador = Convert.ToInt32(this.Idtrabajador);
+
+            
+        }
+
+        private void TsArticulos(object sender, EventArgs e)
+        {
+            frmArticulo frm = frmArticulo.GetInstancia();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void soporteTécnicoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSoporte frm = new frmSoporte();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void backUpBDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
         }
     }

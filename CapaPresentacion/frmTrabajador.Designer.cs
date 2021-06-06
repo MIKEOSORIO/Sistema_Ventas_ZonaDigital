@@ -78,6 +78,8 @@ namespace CapaPresentacion
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.txtNum_Agente = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -194,6 +196,8 @@ namespace CapaPresentacion
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.txtNum_Agente);
             this.groupBox1.Controls.Add(this.cbAcceso);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.txtApellidos);
@@ -519,6 +523,7 @@ namespace CapaPresentacion
             this.dataListado.TabIndex = 7;
             this.dataListado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListado_CellContentClick);
             this.dataListado.DragDrop += new System.Windows.Forms.DragEventHandler(this.dataListado_DragDrop);
+            this.dataListado.DoubleClick += new System.EventHandler(this.dataListado_DoubleClick);
             // 
             // tabPage1
             // 
@@ -579,6 +584,22 @@ namespace CapaPresentacion
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 20;
             this.pictureBox5.TabStop = false;
+            // 
+            // txtNum_Agente
+            // 
+            this.txtNum_Agente.Location = new System.Drawing.Point(438, 345);
+            this.txtNum_Agente.Name = "txtNum_Agente";
+            this.txtNum_Agente.Size = new System.Drawing.Size(167, 23);
+            this.txtNum_Agente.TabIndex = 35;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(333, 348);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(100, 16);
+            this.label3.TabIndex = 36;
+            this.label3.Text = "Num. Agente:";
             // 
             // frmTrabajador
             // 
@@ -661,5 +682,7 @@ namespace CapaPresentacion
         private System.Windows.Forms.ToolTip ttMensaje;
         private System.Windows.Forms.ComboBox cbAcceso;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtNum_Agente;
     }
 }

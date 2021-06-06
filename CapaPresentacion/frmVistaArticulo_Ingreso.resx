@@ -591,6 +591,29 @@
         3QOzYkWXWn3R44rF/h+NhGZlJyGxLQAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="btnNuevoArticulo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        sQAAALEBxi1JjQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPtSURBVEhL1ZN9
+        bFNVGMZrzMjadey7Y6x3a9luS+12XT9Zt35uSOeUkOg+qN2GbGSToQJirOAqyz7ISIQYmhEQ9geIf2CC
+        xGiiJMZorFOJGuIkEYFotjFLtyHburrBusdz2jqYi0uA8YdP8iQ397zv7zn33PfwlkIqlaZNVaC5XFxk
+        GjabrT6pRPphdOmBJM3P575/++CRwFdfXMAvF4cw6g9ganIaEonkQrTm/iSVSmuKDKbguU96cfXXEQz8
+        /ieC41OYDk5j7MYYDfguWnrvUirz26sqnbdPnjiD2vpm7G5ph9/nD8Ope729YBimO1q+uDKXJ7plaen9
+        3MrMfuWKjKsZScnDdbUNM28dOIqy6loc++w8OkmQwVKCm6M3wwHuN9xjpHVdhLC4JLZcma+/dR+oOysc
+        2FS7BVcuDaPQshYfX/bD67uFb4ZDcB/qwbsnT2FyfBJsDvsb6X00glhEywWC5sOVjhkK76jcSOANYTg9
+        86KSdfh8IBCGU3f2nMaxd46j29MdFKWIXosiFiiVuIG4kTolLu7H86+8jo5nHaE6Z/0cfMQ3gb1t+9C0
+        pw3eP6Zx5ocrMJht8H7phUAguEF6m6KsO+IvW1aRLBReT81eHVQ+VQ9qZoUYLeUbIJEXoJTs+OJPgxgm
+        cHrOU5NT8HgO48n1G/BczSb0ft0LBaeGoqwOaRJFMC0hYSRBKKwKw1Pi48+W5OWNvllVhRy1bdq6w4Pi
+        F7oQF8uHXGWCdcch6Kp3wmx9Yu5H3u2hwSEUaNZAV7Ob1HqQq7FNdTU2wq7Xj6YmJp7lSUWiaz3btqHd
+        4YBMawsXaZ0usBob1BUvQpb/GGQKFtKCYhRbSueFULhFpwfL5oX7qGW6Uhxobsb7ra3Izcy8xluVnj74
+        7wBqfV0L9DoWe1+yYo/djme0KmSrrTBGR5LCrQT+6daXIc9RzPXJ9XcCWLF4cF4A+byZfwqVa4rQd64J
+        pnwpvNtfhZ1bDYVWC3XldtgsZCNROJ0yxV0BrLbk9n8GZHHFAePW/TA0tEGlysEHRyqRJOSjzMCiy7UW
+        Mr0JhWSNWZmN089vQZ/LjW93urBKIgfto87ijIEFAQc3bwabkeEXp6aGjNzjt4rU2tDTJg3WmyOmzza9
+        Fga1Dlbico02bDtxiTryvlClmy0sUAdFySkTcobxH921KxIQHxs7QcbqErl6G8s1mtn3XK5w+v2aTM91
+        MpzVZIJ+jufzx3mxMTH0csUQK5cwQEmZUfacljpggR56QLbDbH6oAYIOpzP0vz4i1sZxs6ceMMDIcTQg
+        N4Kcr0cUDNMnF4v/yk5PH8oiF/BezYhEA2lJSR9RVgTJ4/0NEQS9l6bRFqAAAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="Eliminar.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

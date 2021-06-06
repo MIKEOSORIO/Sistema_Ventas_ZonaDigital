@@ -11,9 +11,9 @@ namespace CapaNegocio
 {
     public class NVenta
     {
-        public static string Insertar(int idcliente, int idtrabajador, DateTime fecha,
-            string tipo_comprobante, string serie, string correlativo, decimal igv,
-            DataTable dtDetalles)
+        public static string Insertar(int idcliente, int idtrabajador,DateTime fecha,
+            string tipo_comprobante, string serie, string correlativo, decimal iva,
+            DataTable dtDetalles, string tipo_venta, string num_agente, string nombre_trabajador, string status, string agente)
         {
             DVenta Obj = new DVenta();
             Obj.Idcliente = idcliente;
@@ -22,8 +22,14 @@ namespace CapaNegocio
             Obj.Tipo_Comprobante = tipo_comprobante;
             Obj.Serie = serie;
             Obj.Correlativo = correlativo;
-            Obj.Igv = igv;
+            Obj.Iva = iva;
             List<DDetalle_Venta> detalles = new List<DDetalle_Venta>();
+            Obj.Tipo_Venta = tipo_venta;
+            Obj.Num_Agente = num_agente;
+            Obj.Nombre_Trabajador = nombre_trabajador;
+            Obj.Status = status;
+            Obj.Agente = agente;
+
             foreach (DataRow row in dtDetalles.Rows)
             {
                 DDetalle_Venta detalle = new DDetalle_Venta();
@@ -35,10 +41,11 @@ namespace CapaNegocio
             }
             return Obj.Insertar(Obj, detalles);
         }
-        public static string Eliminar(int idventa)
+        public static string Eliminar(int idventa, string agente)
         {
             DVenta Obj = new DVenta();
             Obj.Idventa = idventa;
+            Obj.Agente = agente;
             return Obj.Eliminar(Obj);
         }
 
@@ -52,10 +59,16 @@ namespace CapaNegocio
         //Método BuscarFecha que llama al método BuscarFecha
         //de la clase DVenta de la CapaDatos
 
-        public static DataTable BuscarFechas(string textobuscar, string textobuscar2)
+        public static DataTable BuscarFechas(string status, string textobuscar, string textobuscar2)
         {
             DVenta Obj = new DVenta();
-            return Obj.BuscarFechas(textobuscar, textobuscar2);
+            return Obj.BuscarFechas(status,textobuscar, textobuscar2);
+        }
+
+        public static DataTable Bucar_Venta_Trabajador(string textobuscar, string textobuscar1, string textobuscar2)
+        {
+            DVenta Obj = new DVenta();
+            return Obj.Buscar_Ventas_Trabajador(textobuscar, textobuscar1 , textobuscar2);
         }
 
         public static DataTable MostrarDetalle(string textobuscar)

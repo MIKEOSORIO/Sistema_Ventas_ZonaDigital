@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using CapaNegocio;
+using CapaPresentacion;
 
 namespace CapaPresentacion
 {
@@ -18,40 +18,39 @@ namespace CapaPresentacion
 
         private bool IsEditar = false;
 
-        private static frmArticulo _instancia;
+        private static frmArticulo _Instancia;
 
         //Creamos una instancia para poder utilizar los
         //Objetos del formulario
         public static frmArticulo GetInstancia()
         {
-            if (_instancia == null)
+            if (_Instancia == null)
             {
-                _instancia = new frmArticulo();
+                _Instancia = new frmArticulo();
             }
-            return _instancia;
+            return _Instancia;
         }
-        //Creamos un método para enviar los valores recibidos
-        //a la caja de texto txtIdcategoria
         public void setCategoria(string idcategoria, string nombre)
         {
             this.txtIdcategoria.Text = idcategoria;
             this.txtCategoria.Text = nombre;
         }
-
         public frmArticulo()
         {
             InitializeComponent();
             this.ttMensaje.SetToolTip(this.txtNombre, "Ingrese el Nombre del Artículo");
-            this.ttMensaje.SetToolTip(this.txtDescripcion, "Ingrese la descripción del Artículo");
-            this.ttMensaje.SetToolTip(this.pxImagen, "Seleccione la imagen del artículo");
+            this.ttMensaje.SetToolTip(this.pxImagen, "Seleccione la Imagen del Artículo");
+            this.ttMensaje.SetToolTip(this.txtCategoria, "Seleccione la Categoría del Artículo");
+            this.ttMensaje.SetToolTip(this.cbIdpresentacion, "Seleccione la presentación del Artículo");
+            this.ttMensaje.SetToolTip(this.txtgarantia_proveedor, "Ingresar los días de garantia ej. 10 días");
+            this.ttMensaje.SetToolTip(this.txtgarantia_tienda, "Ingresar los días de garantia ej. 10 días");
             this.txtIdcategoria.Visible = false;
             this.txtCategoria.ReadOnly = true;
             this.txtIdarticulo.Visible = false;
-
+            
             this.LlenarComboPresentacion();
+
         }
-
-
         //Mostrar Mensaje de Confirmación
         private void MensajeOk(string mensaje)
         {
@@ -68,6 +67,7 @@ namespace CapaPresentacion
 
         //Limpiar todos los controles del formulario
         private void Limpiar()
+
         {
             this.txtCodigo.Text = string.Empty;
             this.txtNombre.Text = string.Empty;
@@ -75,9 +75,9 @@ namespace CapaPresentacion
             this.txtIdcategoria.Text = string.Empty;
             this.txtCategoria.Text = string.Empty;
             this.txtIdarticulo.Text = string.Empty;
-            this.pxImagen.Image = global::CapaPresentacion.Properties.Resources.file;
+            
 
-
+            this.pxImagen.Image = global::CapaPresentacion.Properties.Resources.file21;
         }
 
         //Habilitar los controles del formulario
@@ -88,9 +88,11 @@ namespace CapaPresentacion
             this.txtDescripcion.ReadOnly = !valor;
             this.btnBuscarCategoria.Enabled = valor;
             this.cbIdpresentacion.Enabled = valor;
-            this.txtIdarticulo.ReadOnly = !valor;
             this.btnCargar.Enabled = valor;
             this.btnLimpiar.Enabled = valor;
+            this.txtIdarticulo.ReadOnly = !valor;
+            this.txtgarantia_proveedor.ReadOnly = !valor;
+            this.txtgarantia_tienda.ReadOnly = !valor;
         }
 
         //Habilitar los botones
@@ -101,7 +103,7 @@ namespace CapaPresentacion
                 this.Habilitar(true);
                 this.btnNuevo.Enabled = false;
                 this.btnGuardar.Enabled = true;
-                this.btnModificar.Enabled = false;
+                this.btnEditar.Enabled = false;
                 this.btnCancelar.Enabled = true;
             }
             else
@@ -109,7 +111,7 @@ namespace CapaPresentacion
                 this.Habilitar(false);
                 this.btnNuevo.Enabled = true;
                 this.btnGuardar.Enabled = false;
-                this.btnModificar.Enabled = true;
+                this.btnEditar.Enabled = true;
                 this.btnCancelar.Enabled = false;
             }
 
@@ -120,8 +122,8 @@ namespace CapaPresentacion
         {
             this.dataListado.Columns[0].Visible = false;
             this.dataListado.Columns[1].Visible = false;
-            this.dataListado.Columns[6].Visible = false;
             this.dataListado.Columns[8].Visible = false;
+            this.dataListado.Columns[10].Visible = false;
         }
 
         //Método Mostrar
@@ -135,18 +137,25 @@ namespace CapaPresentacion
         //Método BuscarNombre
         private void BuscarNombre()
         {
-            this.dataListado.DataSource = NArticulo.BuscarNombre(this.txtBuscar.Text);
+            this.dataListado.DataSource = NArticulo.BuscarNombre(this.txtBuscar.Text.ToUpper());
             this.OcultarColumnas();
             lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
-
+        }
+        private void BuscarCodigo()
+        {
+            this.dataListado.DataSource = NArticulo.BuscarCodigo(this.txtBuscar.Text);
+            this.OcultarColumnas();
+            lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
         }
 
-        private void LlenarComboPresentacion() 
+        private void LlenarComboPresentacion()
         {
             cbIdpresentacion.DataSource = NPresentacion.Mostrar();
             cbIdpresentacion.ValueMember = "idpresentacion";
             cbIdpresentacion.DisplayMember = "nombre";
-        } 
+
+        }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -170,7 +179,14 @@ namespace CapaPresentacion
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            this.BuscarNombre();
+            if (cbBuscar.Text.Equals("Codigo"))
+            {
+                this.BuscarCodigo();
+            }
+            else if (cbBuscar.Text.Equals("Nombre"))
+            {
+                this.BuscarNombre();
+            }
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -200,48 +216,43 @@ namespace CapaPresentacion
 
         private void btnCargar_Click(object sender, EventArgs e)
         {
-            // Se crea el OpenFileDialog
-
-
             OpenFileDialog dialog = new OpenFileDialog();
-            // Se muestra al usuario esperando una acción
+
             DialogResult result = dialog.ShowDialog();
 
-            // Si seleccionó un archivo (asumiendo que es una imagen lo que seleccionó)
-            // la mostramos en el PictureBox de la inferfaz
             if (result == DialogResult.OK)
             {
                 this.pxImagen.SizeMode = PictureBoxSizeMode.StretchImage;
-                pxImagen.Image = Image.FromFile(dialog.FileName);
+                this.pxImagen.Image = Image.FromFile(dialog.FileName);
             }
         }
 
 
         private void frmArticulo_Load(object sender, EventArgs e)
-        {
-            //Para ubicar al formulario en la parte superior del contenedor
+        {           
             this.Top = 0;
-            this.Left = 0;
-            //Le decimos al DataGridView que no auto genere las columnas
-            //this.datalistado.AutoGenerateColumns = false;
-            //Llenamos el DataGridView con la información
-            //de todos nuestros Artículos
-            this.Mostrar();
-            //Deshabilita los controles
+            this.Left = 0;           
+            this.Mostrar(); 
             this.Habilitar(false);
-            //Establece los botones
             this.Botones();
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             this.pxImagen.SizeMode = PictureBoxSizeMode.StretchImage;
-            this.pxImagen.Image = global::CapaPresentacion.Properties.Resources.file;
+            this.pxImagen.Image = global::CapaPresentacion.Properties.Resources.file21;      
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            this.BuscarNombre();
+            if (cbBuscar.Text.Equals("Codigo"))
+            {
+                this.BuscarCodigo();
+            }
+            else if (cbBuscar.Text.Equals("Nombre"))
+            {
+                this.BuscarNombre();
+            }
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -261,21 +272,15 @@ namespace CapaPresentacion
                 string rpta = "";
 
                     
-                if (this.txtIdarticulo.Text != string.Empty || this.txtNombre.Text == string.Empty || this.txtIdcategoria.Text == string.Empty || this.txtCodigo.Text == string.Empty)
+                if ( this.txtNombre.Text == string.Empty || this.txtIdcategoria.Text == string.Empty || this.txtCodigo.Text == string.Empty || this.txtgarantia_proveedor.Text == string.Empty || this.txtgarantia_tienda.Text == string.Empty)//|| this.pxImagen.Image == null)
                 {
-                if (this.txtIdarticulo.Text != string.Empty)
-                {
-                    MensajeError("No Moficar campo");
-                    errorIcono.SetError(txtIdarticulo, "No modificar valor");
-                }
-                else {
-                
-                    MensajeError("Campo(s) obligatorio(s) vacío(s)");
-                    errorIcono.SetError(txtNombre, "Ingrese un Valor");
-                    errorIcono.SetError(txtCodigo, "Ingrese un Valor");
-                    errorIcono.SetError(txtCategoria, "Ingrese un Valor");
-                    
-                    }
+                   
+                        MensajeError("Campo(s) obligatorio(s) vacío(s)");
+                        errorIcono.SetError(txtNombre, "Ingrese un Valor");
+                        errorIcono.SetError(txtCodigo, "Ingrese un Valor");
+                        errorIcono.SetError(txtCategoria, "Ingrese un Valor");
+                      //  errorIcono.SetError(pxImagen, "Ingrese una imagen de referencia");
+
                 }
                  else
                 {
@@ -287,14 +292,14 @@ namespace CapaPresentacion
                     if (this.IsNuevo)
                     {
                         rpta = NArticulo.Insertar(this.txtCodigo.Text, this.txtNombre.Text.Trim().ToUpper(),
-                                                   this.txtDescripcion.Text.Trim(), imagen,  Convert.ToInt32(this.txtIdcategoria.Text), 
+                                                   this.txtDescripcion.Text.Trim(), imagen, this.txtgarantia_proveedor.Text.Trim().ToUpper(),this.txtgarantia_tienda.Text.Trim().ToUpper(), Convert.ToInt32(this.txtIdcategoria.Text), 
                                                    Convert.ToInt32(this.cbIdpresentacion.SelectedValue));
                     }
                     else
                     {
-                        rpta = NArticulo.Editar(Convert.ToInt32(this.txtIdarticulo.Text), 
+                        rpta = NArticulo.Editar(Convert.ToInt32(this.txtIdarticulo.Text),
                                                                 this.txtCodigo.Text, this.txtNombre.Text.Trim().ToUpper(),
-                                                                this.txtDescripcion.Text.Trim(), imagen, 
+                                                                this.txtDescripcion.Text.Trim(), imagen, this.txtgarantia_proveedor.Text.Trim().ToUpper(), this.txtgarantia_tienda.Text.Trim().ToUpper(),
                                                 Convert.ToInt32(this.txtIdcategoria.Text),
                                                 Convert.ToInt32(this.cbIdpresentacion.SelectedValue));
                     }
@@ -366,13 +371,13 @@ namespace CapaPresentacion
             this.txtCodigo.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["codigo"].Value);
             this.txtNombre.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["nombre"].Value);
             this.txtDescripcion.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["descripcion"].Value);
-
             byte[] imagenBuffer = (byte[])this.dataListado.CurrentRow.Cells["imagen"].Value;
             System.IO.MemoryStream ms = new System.IO.MemoryStream(imagenBuffer);
 
             this.pxImagen.Image = Image.FromStream(ms);
             this.pxImagen.SizeMode = PictureBoxSizeMode.StretchImage;
-
+            this.txtgarantia_proveedor.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["garantia_proveedor"].Value);
+            this.txtgarantia_tienda.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["garantia_tienda"].Value);
             this.txtIdcategoria.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["idcategoria"].Value);
             this.txtCategoria.Text = Convert.ToString(this.dataListado.CurrentRow.Cells["Categoria"].Value);
             this.cbIdpresentacion.SelectedValue = Convert.ToString(this.dataListado.CurrentRow.Cells["idpresentacion"].Value);
@@ -438,6 +443,27 @@ namespace CapaPresentacion
         }
 
         private void txtIdarticulo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            Consultas.frmConsulta_Stock_Articulos frm = new Consultas.frmConsulta_Stock_Articulos();
+            frm.ShowDialog();
+        }
+
+        private void frmArticulo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _Instancia = null;
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pxImagen_Click(object sender, EventArgs e)
         {
 
         }
