@@ -20,7 +20,6 @@ namespace CapaPresentacion
         private decimal totalPagado = 0;
 
         private static frmVenta _instancia;
-        private static frmAutorizacion _instancia1;
 
         public static frmVenta GetInstancia()
         {
@@ -32,9 +31,9 @@ namespace CapaPresentacion
         }
 
 
-        public void setAutorizacion(string Num_Agente)
+        public void setAutorizacion(string valor)
         {
-            this.txtagente.Text = Num_Agente;
+            this.txtvalor.Text = valor;
         }
 
         public void setCliente(string idcliente, string nombre)
@@ -82,6 +81,7 @@ namespace CapaPresentacion
             this.txtPrecio_Compra.ReadOnly = true;
             this.txtUPC.ReadOnly = true;
             this.txtPrecio_Compra.Visible = false;
+            this.txtvalor.Visible = false;
             this.label13.Visible = false;
             this.txtStock_Actual.ReadOnly = true;
             this.txtProveedorGarantia.ReadOnly = true;
@@ -217,7 +217,7 @@ namespace CapaPresentacion
         //Método BuscarFechas
         private void BuscarFechas()
         {
-            this.dataListado.DataSource = NVenta.BuscarFechas("ACTIVO",this.dtFecha1.Value.ToString("dd/MM/yyyy"),
+            this.dataListado.DataSource = NVenta.BuscarFechas(this.dtFecha1.Value.ToString("dd/MM/yyyy"),
             this.dtFecha2.Value.ToString("dd/MM/yyyy"));
             this.OcultarColumnas();
             lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
@@ -289,40 +289,47 @@ namespace CapaPresentacion
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            try
+            if (chkEliminar.Checked)
             {
-                DialogResult Opcion;
-                Opcion = MessageBox.Show("Realmente Desea Eliminar los Registros", "Sistema de Ventas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                frmAutorizacion au = new frmAutorizacion();
+                au.ShowDialog();
 
-                if (Opcion == DialogResult.OK)
+                try
                 {
-                    string Codigo;
-                    string Rpta = "";
+                    DialogResult Opcion;
+                    Opcion = MessageBox.Show("Realmente Desea Eliminar los Registros", "Sistema de Ventas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                    foreach (DataGridViewRow row in dataListado.Rows)
+                    if (Opcion == DialogResult.OK)
                     {
-                        if (Convert.ToBoolean(row.Cells[0].Value))
+                        string Codigo;
+                        string Rpta = "";
+
+                        foreach (DataGridViewRow row in dataListado.Rows)
                         {
-                            Codigo = Convert.ToString(row.Cells[1].Value);
-                            Rpta = NVenta.Eliminar(Convert.ToInt32(Codigo), txtagente.Text);
-
-                            if (Rpta.Equals("OK"))
+                            if (Convert.ToBoolean(row.Cells[0].Value))
                             {
-                                this.MensajeOk("Se Eliminó Correctamente la venta");
-                            }
-                            else
-                            {
-                                this.MensajeError(Rpta);
-                            }
 
+                                Codigo = Convert.ToString(row.Cells[1].Value);
+                                Rpta = NVenta.Eliminar(Convert.ToInt32(Codigo), this.txtvalor.Text);
+
+                                if (Rpta.Equals("OK"))
+                                {
+                                    this.MensajeOk("Se Eliminó Correctamente la venta");
+                                }
+                                else
+                                {
+                                    this.MensajeError(Rpta);
+                                }
+
+                            }
                         }
+                        this.Mostrar();
                     }
-                    this.Mostrar();
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + ex.StackTrace);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + ex.StackTrace);
+                }
             }
         }
 
@@ -406,7 +413,7 @@ namespace CapaPresentacion
                     {
                          rpta = NVenta.Insertar(Convert.ToInt32(this.txtIdcliente.Text), Idtrabajador,
                             dtFecha.Value, cbTipo_Comprobante.Text, txtSerie.Text, txtCorrelativo.Text,
-                            Convert.ToDecimal(txtIVA.Text), dtDetalle, cbTipo_Venta.Text, txtNum_Agente.Text, txtNombre_Trabajador.Text, "ACTIVO", "");
+                            Convert.ToDecimal(txtIVA.Text), dtDetalle, cbTipo_Venta.Text, txtNum_Agente.Text, txtNombre_Trabajador.Text);
 
                     }
 
@@ -462,7 +469,7 @@ namespace CapaPresentacion
                         if (Convert.ToInt32(row["iddetalle_ingreso"]) == Convert.ToInt32(this.txtIdarticulo.Text))
                         {
                             registrar = false;
-                            this.MensajeError("YA se encuentra el artículo en el detalle");
+                            this.MensajeError("Ya se encuentra el artículo en el detalle");
                         }
                     }
                     if (registrar && Convert.ToInt32(txtCantidad.Text) <= Convert.ToInt32(txtStock_Actual.Text))

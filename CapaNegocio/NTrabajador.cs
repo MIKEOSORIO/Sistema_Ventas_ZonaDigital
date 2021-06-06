@@ -113,10 +113,10 @@ namespace CapaNegocio
             return Obj.Login(Obj);
         }
 
-        public static DataTable Autorizacion(string agente, string password)
+        public static DataTable Autorizacion(string usuario, string password)
         {
             DTrabajador Obj = new DTrabajador();
-            Obj.Num_Agente = agente;
+            Obj.Usuario = usuario;
             Obj.Password = password;
             return Obj.Autorizacion(Obj);
         }

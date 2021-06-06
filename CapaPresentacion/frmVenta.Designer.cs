@@ -57,7 +57,7 @@ namespace CapaPresentacion
             this.dataListado = new System.Windows.Forms.DataGridView();
             this.Eliminar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.txtagente = new System.Windows.Forms.TextBox();
+            this.txtvalor = new System.Windows.Forms.TextBox();
             this.lblTotal_Vendido = new System.Windows.Forms.Label();
             this.btnComprobante = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
@@ -372,7 +372,7 @@ namespace CapaPresentacion
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.txtagente);
+            this.tabPage1.Controls.Add(this.txtvalor);
             this.tabPage1.Controls.Add(this.lblTotal_Vendido);
             this.tabPage1.Controls.Add(this.btnComprobante);
             this.tabPage1.Controls.Add(this.label21);
@@ -396,12 +396,12 @@ namespace CapaPresentacion
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
-            // txtagente
+            // txtvalor
             // 
-            this.txtagente.Location = new System.Drawing.Point(391, 19);
-            this.txtagente.Name = "txtagente";
-            this.txtagente.Size = new System.Drawing.Size(100, 23);
-            this.txtagente.TabIndex = 31;
+            this.txtvalor.Location = new System.Drawing.Point(391, 35);
+            this.txtvalor.Name = "txtvalor";
+            this.txtvalor.Size = new System.Drawing.Size(100, 23);
+            this.txtvalor.TabIndex = 31;
             // 
             // lblTotal_Vendido
             // 
@@ -834,7 +834,7 @@ namespace CapaPresentacion
             // 
             this.btnBuscarArticulo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnBuscarArticulo.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscarArticulo.Image")));
-            this.btnBuscarArticulo.Location = new System.Drawing.Point(376, 39);
+            this.btnBuscarArticulo.Location = new System.Drawing.Point(364, 43);
             this.btnBuscarArticulo.Name = "btnBuscarArticulo";
             this.btnBuscarArticulo.Size = new System.Drawing.Size(39, 39);
             this.btnBuscarArticulo.TabIndex = 37;
@@ -1051,7 +1051,7 @@ namespace CapaPresentacion
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtUPC;
-        private System.Windows.Forms.TextBox txtagente;
+        private System.Windows.Forms.TextBox txtvalor;
         private System.Windows.Forms.TextBox txtProveedorGarantia;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox txtTiendaGarantia;

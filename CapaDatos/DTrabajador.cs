@@ -606,7 +606,7 @@ namespace CapaDatos
                 SqlCmd.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter ParAgente = new SqlParameter();
-                ParAgente.ParameterName = "@agente";
+                ParAgente.ParameterName = "@usuario";
                 ParAgente.SqlDbType = SqlDbType.VarChar;
                 ParAgente.Size = 10;
                 ParAgente.Value = Trabajador.Num_Agente;

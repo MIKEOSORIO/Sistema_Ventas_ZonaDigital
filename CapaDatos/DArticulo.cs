@@ -92,7 +92,6 @@ namespace CapaDatos
             this.Idcategoria = idcategoria;
             this.Idpresentacion = idpresentacion;
             this.TextoBuscar = textobuscar;
-
         }
 
         //Métodos

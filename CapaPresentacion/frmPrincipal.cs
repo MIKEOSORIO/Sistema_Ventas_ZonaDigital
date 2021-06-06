@@ -128,6 +128,17 @@ namespace CapaPresentacion
                 this.TsVentas.Enabled = true;
 
             }
+            else if (Acceso == "Gerente")
+            {
+                this.MnuAlmacen.Enabled = false;
+                this.MnuCompras.Enabled = false;
+                this.MnuVentas.Enabled = true;
+                this.MnuMantenimiento.Enabled = false;
+                this.MnuConsultas.Enabled = true;
+                this.MnuHerramientas.Enabled = true;
+                this.TsCompras.Enabled = false;
+                this.TsVentas.Enabled = true;
+            }
             else if (Acceso == "Vendedor")
             {
                 this.MnuAlmacen.Enabled = false;

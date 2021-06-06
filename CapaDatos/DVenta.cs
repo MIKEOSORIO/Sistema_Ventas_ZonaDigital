@@ -12,6 +12,7 @@ namespace CapaDatos
     public class DVenta
     {
         //Variables
+
         private int _Idventa;
         private int _Idcliente;
         private int _Idtrabajador;
@@ -23,8 +24,6 @@ namespace CapaDatos
         private string _Tipo_Venta;
         private string _Nombre_Trabajador;
         private string _Num_Agente;
-        private string _Status;
-        private string _Agente;
 
         public int Idventa
         {
@@ -93,18 +92,6 @@ namespace CapaDatos
             get { return _Num_Agente; }
             set { _Num_Agente = value; }
         }
-
-        public string Status
-        {
-            get { return _Status; }
-            set { _Status = value; }
-        }
-        public string Agente
-        {
-            get { return _Agente; }
-            set { _Agente = value; }
-        }
-
         //Constructores 
         public DVenta()
         {
@@ -112,12 +99,11 @@ namespace CapaDatos
         }
         public DVenta(int idventa, int idcliente, int idtrabajador,
             DateTime fecha, string tipo_comprobante, string serie,
-            string correlativo, decimal iva, string tipo_venta, string nombre_trabajador, string num_agente, string status, string agente)
+            string correlativo, decimal iva, string tipo_venta, string nombre_trabajador, string num_agente)
         {
             this.Idventa = idventa;
             this.Idcliente = idcliente;
             this.Idtrabajador = idtrabajador;
-
             this.Fecha = fecha;
             this.Tipo_Comprobante = tipo_comprobante;
             this.Serie = serie;
@@ -126,9 +112,6 @@ namespace CapaDatos
             this.Tipo_Venta = tipo_venta;
             this.Num_Agente = num_agente;
             this.Nombre_Trabajador = nombre_trabajador;
-            this.Status = status;
-            this.Agente = agente;
-
         }
         //Métodos
         public string DisminuirStock(int iddetalle_ingreso, int cantidad)
@@ -268,20 +251,6 @@ namespace CapaDatos
                 ParNombre_Trabajador.Value = Venta.Nombre_Trabajador;
                 SqlCmd.Parameters.Add(ParNombre_Trabajador);
 
-                SqlParameter ParStatus = new SqlParameter();
-                ParStatus.ParameterName = "@status";
-                ParStatus.SqlDbType = SqlDbType.VarChar;
-                ParStatus.Size = 10;
-                ParStatus.Value = Venta.Status;
-                SqlCmd.Parameters.Add(ParStatus);
-
-                SqlParameter ParAgente = new SqlParameter();
-                ParAgente.ParameterName = "@agente";
-                ParAgente.SqlDbType = SqlDbType.VarChar;
-                ParAgente.Size = 10;
-                ParAgente.Value = Venta.Agente;
-                SqlCmd.Parameters.Add(ParAgente);
-
                 //Ejecutamos nuestro comando
 
                 rpta = SqlCmd.ExecuteNonQuery() == 1 ? "OK" : "NO se Ingreso el Registro";
@@ -355,6 +324,12 @@ namespace CapaDatos
                 ParIdventa.Value = Venta.Idventa;
                 SqlCmd.Parameters.Add(ParIdventa);
 
+                SqlParameter ParTrue= new SqlParameter();
+                ParTrue.ParameterName = "@valor";
+                ParTrue.SqlDbType = SqlDbType.Int;
+                ParTrue.Value = Venta.Num_Agente;
+                SqlCmd.Parameters.Add(ParTrue);
+
                 //Ejecutamos nuestro comando
 
                 rpta = SqlCmd.ExecuteNonQuery() == 1 ? "OK" : "OK";
@@ -399,7 +374,7 @@ namespace CapaDatos
 
 
         //Método Buscarfechas
-        public DataTable BuscarFechas(String Status, String TextoBuscar, String TextoBuscar2)
+        public DataTable BuscarFechas(String TextoBuscar, String TextoBuscar2)
         {
             DataTable DtResultado = new DataTable("venta");
             SqlConnection SqlCon = new SqlConnection();
@@ -410,14 +385,6 @@ namespace CapaDatos
                 SqlCmd.Connection = SqlCon;
                 SqlCmd.CommandText = "spbuscar_venta_fecha";
                 SqlCmd.CommandType = CommandType.StoredProcedure;
-
-
-                SqlParameter ParStatus = new SqlParameter();
-                ParStatus.ParameterName = "@status";
-                ParStatus.SqlDbType = SqlDbType.VarChar;
-                ParStatus.Size = 10;
-                ParStatus.Value = Status;
-                SqlCmd.Parameters.Add(ParStatus);
 
                 SqlParameter ParTextoBuscar = new SqlParameter();
                 ParTextoBuscar.ParameterName = "@textobuscar";
@@ -445,7 +412,6 @@ namespace CapaDatos
             return DtResultado;
 
         }
-
 
         public DataTable MostrarDetalle(String TextoBuscar)
         {

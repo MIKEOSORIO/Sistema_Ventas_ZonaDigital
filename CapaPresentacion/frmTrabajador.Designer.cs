@@ -42,6 +42,8 @@ namespace CapaPresentacion
             this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtNum_Agente = new System.Windows.Forms.TextBox();
             this.cbAcceso = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtApellidos = new System.Windows.Forms.TextBox();
@@ -78,8 +80,6 @@ namespace CapaPresentacion
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.txtNum_Agente = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -152,7 +152,7 @@ namespace CapaPresentacion
             this.dtFecha_Nacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFecha_Nacimiento.Location = new System.Drawing.Point(440, 136);
             this.dtFecha_Nacimiento.Name = "dtFecha_Nacimiento";
-            this.dtFecha_Nacimiento.Size = new System.Drawing.Size(118, 23);
+            this.dtFecha_Nacimiento.Size = new System.Drawing.Size(119, 23);
             this.dtFecha_Nacimiento.TabIndex = 27;
             // 
             // label11
@@ -234,13 +234,30 @@ namespace CapaPresentacion
             this.groupBox1.Text = "Trabajadores";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(333, 348);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(100, 16);
+            this.label3.TabIndex = 36;
+            this.label3.Text = "Num. Agente:";
+            // 
+            // txtNum_Agente
+            // 
+            this.txtNum_Agente.Location = new System.Drawing.Point(438, 345);
+            this.txtNum_Agente.Name = "txtNum_Agente";
+            this.txtNum_Agente.Size = new System.Drawing.Size(167, 23);
+            this.txtNum_Agente.TabIndex = 35;
+            // 
             // cbAcceso
             // 
             this.cbAcceso.FormattingEnabled = true;
             this.cbAcceso.Items.AddRange(new object[] {
             "Administrador",
             "Vendedor",
-            "Almacenero"});
+            "Almacenero",
+            "Gerente"});
             this.cbAcceso.Location = new System.Drawing.Point(152, 342);
             this.cbAcceso.Name = "cbAcceso";
             this.cbAcceso.Size = new System.Drawing.Size(166, 24);
@@ -584,22 +601,6 @@ namespace CapaPresentacion
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 20;
             this.pictureBox5.TabStop = false;
-            // 
-            // txtNum_Agente
-            // 
-            this.txtNum_Agente.Location = new System.Drawing.Point(438, 345);
-            this.txtNum_Agente.Name = "txtNum_Agente";
-            this.txtNum_Agente.Size = new System.Drawing.Size(167, 23);
-            this.txtNum_Agente.TabIndex = 35;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(333, 348);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 16);
-            this.label3.TabIndex = 36;
-            this.label3.Text = "Num. Agente:";
             // 
             // frmTrabajador
             // 

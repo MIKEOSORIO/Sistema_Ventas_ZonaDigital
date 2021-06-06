@@ -75,8 +75,6 @@ namespace CapaPresentacion
             this.txtIdcategoria.Text = string.Empty;
             this.txtCategoria.Text = string.Empty;
             this.txtIdarticulo.Text = string.Empty;
-            
-
             this.pxImagen.Image = global::CapaPresentacion.Properties.Resources.file21;
         }
 

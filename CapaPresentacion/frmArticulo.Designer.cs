@@ -47,6 +47,11 @@ namespace CapaPresentacion
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtgarantia_tienda = new System.Windows.Forms.TextBox();
+            this.txtgarantia_proveedor = new System.Windows.Forms.TextBox();
             this.cbIdpresentacion = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btnBuscarCategoria = new System.Windows.Forms.Button();
@@ -71,11 +76,6 @@ namespace CapaPresentacion
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.txtgarantia_proveedor = new System.Windows.Forms.TextBox();
-            this.txtgarantia_tienda = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataListado)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -161,7 +161,7 @@ namespace CapaPresentacion
             // 
             // txtIdarticulo
             // 
-            this.txtIdarticulo.Location = new System.Drawing.Point(139, 0);
+            this.txtIdarticulo.Location = new System.Drawing.Point(143, 0);
             this.txtIdarticulo.Name = "txtIdarticulo";
             this.txtIdarticulo.Size = new System.Drawing.Size(167, 23);
             this.txtIdarticulo.TabIndex = 3;
@@ -301,6 +301,47 @@ namespace CapaPresentacion
             this.groupBox1.Text = "Artículos";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(610, 241);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(68, 16);
+            this.label10.TabIndex = 28;
+            this.label10.Text = "Garantía:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(507, 313);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(109, 16);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Con Proveedor:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(538, 279);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 16);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "En Tienda:";
+            // 
+            // txtgarantia_tienda
+            // 
+            this.txtgarantia_tienda.Location = new System.Drawing.Point(640, 272);
+            this.txtgarantia_tienda.Name = "txtgarantia_tienda";
+            this.txtgarantia_tienda.Size = new System.Drawing.Size(164, 23);
+            this.txtgarantia_tienda.TabIndex = 25;
+            // 
+            // txtgarantia_proveedor
+            // 
+            this.txtgarantia_proveedor.Location = new System.Drawing.Point(640, 307);
+            this.txtgarantia_proveedor.Name = "txtgarantia_proveedor";
+            this.txtgarantia_proveedor.Size = new System.Drawing.Size(164, 23);
+            this.txtgarantia_proveedor.TabIndex = 24;
+            // 
             // cbIdpresentacion
             // 
             this.cbIdpresentacion.FormattingEnabled = true;
@@ -403,7 +444,7 @@ namespace CapaPresentacion
             // 
             // txtCodigo
             // 
-            this.txtCodigo.Location = new System.Drawing.Point(146, 50);
+            this.txtCodigo.Location = new System.Drawing.Point(144, 57);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(244, 23);
             this.txtCodigo.TabIndex = 12;
@@ -537,47 +578,6 @@ namespace CapaPresentacion
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 10;
             this.pictureBox2.TabStop = false;
-            // 
-            // txtgarantia_proveedor
-            // 
-            this.txtgarantia_proveedor.Location = new System.Drawing.Point(640, 307);
-            this.txtgarantia_proveedor.Name = "txtgarantia_proveedor";
-            this.txtgarantia_proveedor.Size = new System.Drawing.Size(164, 23);
-            this.txtgarantia_proveedor.TabIndex = 24;
-            // 
-            // txtgarantia_tienda
-            // 
-            this.txtgarantia_tienda.Location = new System.Drawing.Point(640, 272);
-            this.txtgarantia_tienda.Name = "txtgarantia_tienda";
-            this.txtgarantia_tienda.Size = new System.Drawing.Size(164, 23);
-            this.txtgarantia_tienda.TabIndex = 25;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(538, 279);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 16);
-            this.label2.TabIndex = 26;
-            this.label2.Text = "En Tienda:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(507, 313);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 16);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "Con Proveedor:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(610, 241);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(68, 16);
-            this.label10.TabIndex = 28;
-            this.label10.Text = "Garantía:";
             // 
             // frmArticulo
             // 
