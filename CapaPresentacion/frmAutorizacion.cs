@@ -51,7 +51,7 @@ namespace CapaPresentacion
             //Evaluamos si no existen los Datos
             if (Datos.Rows.Count == 0)
             {
-                MessageBox.Show("No Tiene Acceso al Sistema", "Sistema Ventas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No tienes permisos para eliminar", "Sistema Ventas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {

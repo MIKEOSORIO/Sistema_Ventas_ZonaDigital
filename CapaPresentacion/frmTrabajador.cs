@@ -123,6 +123,18 @@ namespace CapaPresentacion
             lblTotal.Text = "Total Registros: " + Convert.ToString(dataListado.Rows.Count);
         }
 
+        private void BuscarNombre()
+        {
+            this.dataListado.DataSource = NTrabajador.BuscarANombre(this.txtBuscar.Text);
+            this.OcultarColumnas();
+            lblTotal.Text = "Total Registros: " + Convert.ToString(dataListado.Rows.Count);
+        }
+        private void BuscarNum_Agente()
+        {
+            this.dataListado.DataSource = NTrabajador.BuscarNum_Agente(this.txtBuscar.Text);
+            this.OcultarColumnas();
+            lblTotal.Text = "Total Registros: " + Convert.ToString(dataListado.Rows.Count);
+        }
         private void BuscarNum_Documento()
         {
             this.dataListado.DataSource = NTrabajador.BuscarNum_Documento(this.txtBuscar.Text);
@@ -140,10 +152,19 @@ namespace CapaPresentacion
             {
                 this.BuscarNum_Documento();
             }
+            if (cbBuscar.Text.Equals("Nombre"))
+            {
+                this.BuscarNombre();
+            }
+            else if (cbBuscar.Text.Equals("Num. Agente"))
+            {
+                this.BuscarNum_Agente();
+            }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+
             if (cbBuscar.Text.Equals("Apellidos"))
             {
                 this.BuscarApellidos();
@@ -151,6 +172,14 @@ namespace CapaPresentacion
             else if (cbBuscar.Text.Equals("Documento"))
             {
                 this.BuscarNum_Documento();
+            }
+            if (cbBuscar.Text.Equals("Nombre"))
+            {
+                this.BuscarNombre();
+            }
+            else if (cbBuscar.Text.Equals("Num. Agente"))
+            {
+                this.BuscarNum_Agente();
             }
         }
 

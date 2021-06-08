@@ -491,7 +491,36 @@ namespace CapaDatos
 
         }
 
+        public DataTable BuscarNombre(DTrabajador Trabajador)
+        {
+            DataTable DtResultado = new DataTable("trabajador");
+            SqlConnection SqlCon = new SqlConnection();
+            try
+            {
+                SqlCon.ConnectionString = Conexion.Cn;
+                SqlCommand SqlCmd = new SqlCommand();
+                SqlCmd.Connection = SqlCon;
+                SqlCmd.CommandText = "spbuscar_trabajador_nombre";
+                SqlCmd.CommandType = CommandType.StoredProcedure;
 
+                SqlParameter ParTextoBuscar = new SqlParameter();
+                ParTextoBuscar.ParameterName = "@textobuscar";
+                ParTextoBuscar.SqlDbType = SqlDbType.VarChar;
+                ParTextoBuscar.Size = 50;
+                ParTextoBuscar.Value = Trabajador.TextoBuscar;
+                SqlCmd.Parameters.Add(ParTextoBuscar);
+
+                SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);
+                SqlDat.Fill(DtResultado);
+
+            }
+            catch (Exception ex)
+            {
+                DtResultado = null;
+            }
+            return DtResultado;
+
+        }
 
 
         public DataTable BuscarNum_Documento(DTrabajador Trabajador)

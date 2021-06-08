@@ -243,14 +243,6 @@ namespace CapaPresentacion
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            if (cbBuscar.Text.Equals("Codigo"))
-            {
-                this.BuscarCodigo();
-            }
-            else if (cbBuscar.Text.Equals("Nombre"))
-            {
-                this.BuscarNombre();
-            }
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
