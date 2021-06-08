@@ -516,12 +516,15 @@ namespace CapaPresentacion
             // 
             this.cbBuscar.FormattingEnabled = true;
             this.cbBuscar.Items.AddRange(new object[] {
-            "Apellidos"});
+            "Nombre",
+            "Apellidos",
+            "Documento",
+            "Num. Agente"});
             this.cbBuscar.Location = new System.Drawing.Point(17, 23);
             this.cbBuscar.Name = "cbBuscar";
             this.cbBuscar.Size = new System.Drawing.Size(153, 24);
             this.cbBuscar.TabIndex = 8;
-            this.cbBuscar.Text = "Documento";
+            this.cbBuscar.Text = "Nombre";
             // 
             // dataListado
             // 

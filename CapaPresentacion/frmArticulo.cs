@@ -243,14 +243,7 @@ namespace CapaPresentacion
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            if (cbBuscar.Text.Equals("Codigo"))
-            {
-                this.BuscarCodigo();
-            }
-            else if (cbBuscar.Text.Equals("Nombre"))
-            {
-                this.BuscarNombre();
-            }
+           
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -289,6 +282,7 @@ namespace CapaPresentacion
 
                     if (this.IsNuevo)
                     {
+                        //Validar si el codigo del articulo existe
                         rpta = NArticulo.Insertar(this.txtCodigo.Text, this.txtNombre.Text.Trim().ToUpper(),
                                                    this.txtDescripcion.Text.Trim(), imagen, this.txtgarantia_proveedor.Text.Trim().ToUpper(),this.txtgarantia_tienda.Text.Trim().ToUpper(), Convert.ToInt32(this.txtIdcategoria.Text), 
                                                    Convert.ToInt32(this.cbIdpresentacion.SelectedValue));
