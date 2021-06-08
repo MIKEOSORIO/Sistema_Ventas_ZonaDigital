@@ -121,6 +121,8 @@ namespace CapaPresentacion
             this.txtTiendaGarantia.Text = string.Empty;
             this.txtNum_Agente.Text = string.Empty;
             this.txtNombre_Trabajador.Text = string.Empty;
+
+
             //this.cbTipo_Venta.Text = string.Empty;
             this.crearTabla();
         }
@@ -292,54 +294,42 @@ namespace CapaPresentacion
                 frmAutorizacion au = new frmAutorizacion();
                 au.ShowDialog();
 
-                if (txtvalor.Text == "1")
+                try
                 {
+                    DialogResult Opcion;
+                    Opcion = MessageBox.Show("Realmente Desea Eliminar los Registros", "Sistema de Ventas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                    try
+                    if (Opcion == DialogResult.OK)
                     {
-                        DialogResult Opcion;
-                        Opcion = MessageBox.Show("Realmente Desea Eliminar los Registros", "Sistema de Ventas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        string Codigo;
+                        string Rpta = "";
 
-                        if (Opcion == DialogResult.OK)
+                        foreach (DataGridViewRow row in dataListado.Rows)
                         {
-                            string Codigo;
-                            string Rpta = "";
-
-                            foreach (DataGridViewRow row in dataListado.Rows)
+                            if (Convert.ToBoolean(row.Cells[0].Value))
                             {
-                                if (Convert.ToBoolean(row.Cells[0].Value))
+
+                                Codigo = Convert.ToString(row.Cells[1].Value);
+                                Rpta = NVenta.Eliminar(Convert.ToInt32(Codigo), this.txtvalor.Text);
+
+                                if (Rpta.Equals("OK"))
                                 {
-
-                                    Codigo = Convert.ToString(row.Cells[1].Value);
-                                    Rpta = NVenta.Eliminar(Convert.ToInt32(Codigo), this.txtvalor.Text);
-
-                                    if (Rpta.Equals("OK"))
-                                    {
-                                        this.MensajeOk("Se Eliminó Correctamente la venta");
-                                    }
-                                    else
-                                    {
-                                        this.MensajeError(Rpta);
-                                    }
-
+                                    this.MensajeOk("Se Eliminó Correctamente la venta");
                                 }
+                                else
+                                {
+                                    this.MensajeError(Rpta);
+                                }
+
                             }
-                            this.Mostrar();
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message + ex.StackTrace);
+                        this.Mostrar();
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    this.MensajeError("No tienes permisos para eliminar");
+                    MessageBox.Show(ex.Message + ex.StackTrace);
                 }
-            }
-            else 
-            {
-                this.MensajeError("No hay registros seleccionados");
             }
         }
 

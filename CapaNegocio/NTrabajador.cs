@@ -88,13 +88,6 @@ namespace CapaNegocio
             return Obj.BuscarApellidos(Obj);
         }
 
-        public static DataTable BuscarNombre(string textobuscar)
-        {
-            DTrabajador Obj = new DTrabajador();
-            Obj.TextoBuscar = textobuscar;
-            return Obj.BuscarNombre(Obj);
-        }
-
         //Método BuscarNum_Documento que llama al método BuscarNum_Documento
         //de la clase DTRabajador de la CapaDatos
 

@@ -113,7 +113,7 @@ namespace CapaPresentacion
             // txtBuscar
             // 
             this.txtBuscar.Font = new System.Drawing.Font("Poor Richard", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscar.Location = new System.Drawing.Point(233, 76);
+            this.txtBuscar.Location = new System.Drawing.Point(201, 73);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(183, 26);
             this.txtBuscar.TabIndex = 1;
@@ -205,7 +205,7 @@ namespace CapaPresentacion
             this.errorIcono.SetIconAlignment(this.btnImprimir, System.Windows.Forms.ErrorIconAlignment.BottomLeft);
             this.btnImprimir.Image = global::CapaPresentacion.Properties.Resources.capital;
             this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImprimir.Location = new System.Drawing.Point(740, 70);
+            this.btnImprimir.Location = new System.Drawing.Point(732, 60);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(130, 37);
             this.btnImprimir.TabIndex = 4;
@@ -219,7 +219,7 @@ namespace CapaPresentacion
             this.errorIcono.SetIconAlignment(this.btnEliminar, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(614, 70);
+            this.btnEliminar.Location = new System.Drawing.Point(606, 60);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(112, 37);
             this.btnEliminar.TabIndex = 3;
@@ -233,7 +233,7 @@ namespace CapaPresentacion
             this.errorIcono.SetIconAlignment(this.btnBuscar, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(481, 70);
+            this.btnBuscar.Location = new System.Drawing.Point(473, 60);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(117, 37);
             this.btnBuscar.TabIndex = 2;
